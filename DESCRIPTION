@@ -6,15 +6,16 @@ Date: 2019-06-27
 Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
                   role = c("aut", "cre")))
 Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Logistic regression trees: a decision tree with logistic regressions at its leaves.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports:
     rpart
 Suggests:
-    knitr
+    knitr,
+    testthat,
+    covr
 URL: https://adimajo.github.io
 BugReports: https://github.com/adimajo/glmtree/issues
 VignetteBuilder: knitr
