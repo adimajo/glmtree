@@ -4,8 +4,10 @@
 \alias{glmtree}
 \title{Logistic regression tree by Stochastic-Expectation-Maximization}
 \usage{
-glmtree(x, y = y, K = 10, iterations = 200, test = F,
-  validation = T, proportions = c(0.3))
+glmtree(x, y, K = 10, iterations = 200, test = F, validation = F,
+  proportions = c(0.3), criterion = "bic",
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100,
+  maxdepth = 5))
 }
 \arguments{
 \item{x}{The features to use for prediction.}
@@ -21,13 +23,17 @@ glmtree(x, y = y, K = 10, iterations = 200, test = F,
 \item{validation}{Boolean : True if the algorithm should use predictors to construct a validation set on which to search for the best discretization scheme using the provided criterion (default: TRUE).}
 
 \item{proportions}{The list of the proportions wanted for test and validation set. Not used when both test and validation are false. Only the first is used when there is only one of either test or validation that is set to TRUE. Produces an error when the sum is greater to one. Default: list(0.2,0.2) so that the training set has 0.6 of the input observations.}
+
+\item{criterion}{The criterion ('gini','aic','bic') to use to choose the best discretization scheme among the generated ones (default: 'gini'). Nota Bene: it is best to use 'gini' only when test is set to TRUE and 'aic' or 'bic' when it is not. When using 'aic' or 'bic' with a test set, the likelihood is returned as there is no need to penalize for generalization purposes.}
+
+\item{ctree_controls}{The controls to use for `partykit::ctree`.}
 }
 \description{
 This function produces a logistic regression tree: a decision tree with logistic regressions at its leaves.
 }
 \examples{
 data = generateData(n = 1000, scenario = "no tree")
-glmtree(data[,c("x1", "x2")], data$y)
+glmtree(x = data[,c("x1", "x2")], y = data$y)
 }
 \author{
 Adrien Ehrhardt

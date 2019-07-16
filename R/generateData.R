@@ -57,11 +57,11 @@ generateData <- function(n = 100, scenario = "tree", visualize = F) {
     data$x1 <- as.factor(data$x1)
 
     if (visualize) {
-      graphics::par(mfrow=c(2,2))
+      # graphics::par(mfrow=c(2,2))
       for (c in 1:n_clusters) {
         graphics::plot(data[data$c==c,2],data[data$c==c,3],col=data[data$c==c,4]+1,xlab="First coordinate",ylab="Second coordinate")
       }
-      graphics::par(mfrow=c(1,1))
+      # graphics::par(mfrow=c(1,1))
     }
 
     return(data)

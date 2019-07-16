@@ -3,3 +3,4 @@
 export(generateData)
 export(glmtree)
 export(normalizedGini)
+importFrom(magrittr,"%>%")
