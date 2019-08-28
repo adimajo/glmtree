@@ -2,7 +2,7 @@ Package: glmtree
 Type: Package
 Title: Logistic Regression Trees
 Version: 0.1
-Date: 2019-06-27
+Date: 2019-08-28
 Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
                   role = c("aut", "cre")))
 Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
