@@ -6,7 +6,7 @@ Date: 2019-08-28
 Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
                   role = c("aut", "cre")))
 Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
-Description: Logistic regression trees: a decision tree with logistic regressions at its leaves.
+Description: A logistic regression tree is a decision tree with logistic regressions at its leaves. A particular Stochastic-Expectation-Maximization algorithm is used to draw a few good trees, that are then assessed via the user's criterion of choice among BIC / AIC / test set Gini. The formal development is given in a PhD chapter, see <https://github.com/adimajo/manuscrit_these>.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
