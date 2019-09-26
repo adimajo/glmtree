@@ -8,4 +8,11 @@
 #' @name glmdisc-class
 #' @rdname glmdisc-class
 
-methods::setClass("glmtree", representation(parameters = "list", best.tree = "list", performance = "list"))
+methods::setClass(
+  "glmtree",
+  representation(
+    parameters = "list",
+    best.tree = "list",
+    performance = "list"
+  )
+)

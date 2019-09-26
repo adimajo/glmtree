@@ -4,7 +4,7 @@ author: "Adrien Ehrhardt"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{`glmtree` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,7 +17,7 @@ vignette: >
 
 ```{r segmentation_simulation1}
 library(glmtree)
-data = generateData(n = 1000, scenario = "no tree", visualize = T)
+data = generateData(n = 1000, scenario = "no tree", visualize = TRUE)
 
 int_train = sample.int(n = 1000, size = 0.2*1000)
 
@@ -56,7 +56,7 @@ plot(mixed, choix = 'ind', label = "none")
 ### MOB
 
 ```{r segmentation_mob1}
-if (require(partykit, quietly = T)) {
+if (require(partykit, quietly = TRUE)) {
   mob_data = partykit::glmtree(formula = y ~ x1 + x2 | x1 + x2, data = data, family = binomial)
   plot(mob_data)
   normalizedGini(test$y, predict(mob_data,test))
@@ -66,9 +66,12 @@ if (require(partykit, quietly = T)) {
 
 ### `glmtree` approach
 
-```{r segmentation_glmtree1, warning=F}
+```{r segmentation_glmtree1, warning=FALSE}
 
 tree = glmtree::glmtree(x = data[,c("x1", "x2")], y = data$y)
+
+# Storing the user's par
+old_par = par()
 
 par(mfrow=c(1,1))
 
@@ -92,6 +95,7 @@ for (j in levels(data$c_map)) {
 
 normalizedGini(test$y,pred)
 
+par(old_par)
 ```
 
 
@@ -100,7 +104,7 @@ normalizedGini(test$y,pred)
 ### Simulation
 
 ```{r segmentation_simulation2}
-data = generateData(n = 1000, scenario = "tree", visualize = T)
+data = generateData(n = 1000, scenario = "tree", visualize = TRUE)
 
 int_train = sample.int(n = 1000, size = 0.2*1000)
 
@@ -127,8 +131,8 @@ normalizedGini(test$y,pred)
 
 ### MOB
 
-```{r segmentation_mob2}
-if (require(partykit, quietly = T)) {
+```{r segmentation_mob2, warning=FALSE, message=FALSE}
+if (require(partykit, quietly = TRUE)) {
   mob_data = partykit::glmtree(formula = y ~ x1 + x2 +x3 | x1 + x2 + x3, data = data, family = binomial)
   plot(mob_data)
   normalizedGini(test$y, predict(mob_data,test))
@@ -137,7 +141,7 @@ if (require(partykit, quietly = T)) {
 
 ### `glmtree` approach
 
-```{r segmentation_glmtree2, warning=F}
+```{r segmentation_glmtree2, warning=FALSE}
 
 tree = glmtree::glmtree(x = data[,c("x1", "x2", "x3")], y = data$y)
 

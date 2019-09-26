@@ -17,4 +17,4 @@ This function randomy initializes the segmentation.
 \author{
 Adrien Ehrhardt
 }
-\keyword{glmtree}
+\keyword{internal}

@@ -2,11 +2,11 @@ Package: glmtree
 Type: Package
 Title: Logistic Regression Trees
 Version: 0.1
-Date: 2019-08-28
+Date: 2019-09-26
 Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
                   role = c("aut", "cre")))
 Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
-Description: A logistic regression tree is a decision tree with logistic regressions at its leaves. A particular Stochastic-Expectation-Maximization algorithm is used to draw a few good trees, that are then assessed via the user's criterion of choice among BIC / AIC / test set Gini. The formal development is given in a PhD chapter, see <https://github.com/adimajo/manuscrit_these>.
+Description: A logistic regression tree is a decision tree with logistic regressions at its leaves. A particular stochastic expectation maximization algorithm is used to draw a few good trees, that are then assessed via the user's criterion of choice among BIC / AIC / test set Gini. The formal development is given in a PhD chapter, see Ehrhardt (2019) <https://github.com/adimajo/manuscrit_these/releases/>.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

@@ -4,14 +4,14 @@
 \alias{generateData}
 \title{Generates data from two logistic regression trees.}
 \usage{
-generateData(n = 100, scenario = "tree", visualize = F)
+generateData(n = 100, scenario = "tree", visualize = FALSE)
 }
 \arguments{
 \item{n}{The number of observations to draw.}
 
 \item{scenario}{The "no tree" scenario denotes the first scenario where there is a single logistic regression generating the data. The "tree" scenario generates data from the second data generating mechanism where there are three logistic regressions.}
 
-\item{visualize}{Whether (T) or not (F) to plot the generated data.}
+\item{visualize}{Whether (TRUE) or not (FALSE) to plot the generated data.}
 }
 \description{
 This function generates data from two logistic regression trees: one with three apparent clusters (in terms of variance of the features) but a single logistic regression generating y | x, and one with a single apparent cluster but three different logistic regressions generating y | x given a categorical feature.

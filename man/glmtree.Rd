@@ -4,8 +4,8 @@
 \alias{glmtree}
 \title{Logistic regression tree by Stochastic-Expectation-Maximization}
 \usage{
-glmtree(x, y, K = 10, iterations = 200, test = F, validation = F,
-  proportions = c(0.3), criterion = "bic",
+glmtree(x, y, K = 10, iterations = 200, test = FALSE,
+  validation = FALSE, proportions = c(0.3), criterion = "bic",
   ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100,
   maxdepth = 5))
 }
@@ -32,8 +32,8 @@ glmtree(x, y, K = 10, iterations = 200, test = F, validation = F,
 This function produces a logistic regression tree: a decision tree with logistic regressions at its leaves.
 }
 \examples{
-data = generateData(n = 1000, scenario = "no tree")
-glmtree(x = data[,c("x1", "x2")], y = data$y)
+data = generateData(n = 100, scenario = "no tree")
+glmtree(x = data[,c("x1", "x2")], y = data$y, K = 5, iterations = 80, criterion = "aic")
 }
 \author{
 Adrien Ehrhardt

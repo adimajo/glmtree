@@ -13,9 +13,13 @@
 
 normalizedGini <- function(actual, predicted) {
   Gini <- function(a, p) {
-    if (length(a) !=  length(p)) stop("Actual and Predicted need to be equal lengths!")
-    temp.df <- data.frame(actual = a, pred = p, range=c(1:length(a)))
-    temp.df <- temp.df[order(-temp.df$pred, temp.df$range),]
+    if (length(a) !=  length(p))
+      stop("Actual and Predicted need to be equal lengths!")
+    temp.df <-
+      data.frame(actual = a,
+                 pred = p,
+                 range = c(1:length(a)))
+    temp.df <- temp.df[order(-temp.df$pred, temp.df$range), ]
     population.delta <- 1 / length(a)
     total.losses <- sum(a)
     null.losses <- rep(population.delta, length(a))
@@ -23,5 +27,5 @@ normalizedGini <- function(actual, predicted) {
     gini.sum <- cumsum(accum.losses - null.losses)
     sum(gini.sum) / length(a)
   }
-  Gini(actual,predicted) / Gini(actual,actual)
+  Gini(actual, predicted) / Gini(actual, actual)
 }
