@@ -1,8 +1,8 @@
 Package: glmtree
 Type: Package
 Title: Logistic Regression Trees
-Version: 0.1
-Date: 2019-09-26
+Version: 0.2
+Date: 2020-07-29
 Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
                   role = c("aut", "cre")))
 Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
@@ -25,4 +25,4 @@ Suggests:
 URL: https://adimajo.github.io
 BugReports: https://github.com/adimajo/glmtree/issues
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

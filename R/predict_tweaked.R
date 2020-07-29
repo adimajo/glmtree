@@ -9,7 +9,7 @@
 
 predict_tweaked <- function(model, df, c_iter) {
   pred = tryCatch(
-    stats::predict(model, newdata = df, type = "response"),
+    stats::predict(object = model, newdata = df, type = "response"),
     error = function(e) {
       data_w = df
       data_wo = df
@@ -24,7 +24,7 @@ predict_tweaked <- function(model, df, c_iter) {
         }
       }
 
-      pred_w = stats::predict(model, newdata = data_w, type = "response")
+      pred_w = stats::predict(object = model, newdata = data_w, type = "response")
       pred_wo = rep(mean(df[df$c_hat == c_iter, "y"], na.rm = T), nrow(data_wo))
       pred = c(pred_w, pred_wo)
       names(pred) = c(rownames(data_w), rownames(data_wo))

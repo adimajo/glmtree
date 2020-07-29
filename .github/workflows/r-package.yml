@@ -1,0 +1,58 @@
+# This workflow will install R dependencies, run tests and lint with a variety of R versions
+
+name: R package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: r-base:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up R and install dependencies
+      run: |
+        apt-get update
+        apt-get -y install libxml2-dev
+        apt-get -y install libssl-dev
+        apt-get -y install libcurl4-openssl-dev
+        apt-get -y install libgit2-dev
+        apt-get -y install libssh2-1-dev
+        apt-get -y install pandoc
+        r -e "install.packages('devtools')"
+        r -e 'devtools::install_deps()'
+    - name: Lint with lintr
+      run: |
+        r -e "install.packages('lintr')"
+        r -e "lintr::lint_package()"
+    - name: Build
+      run: |
+        r -e 'devtools::build(binary = TRUE)'
+    - name: Documentation
+      run: |
+        r -e "install.packages('pkgdown')"
+        r inst/document.R
+    - name: Check
+      run: |
+        r -e 'devtools::check(document = FALSE, args = "--no-tests", error_on = "all")'
+    - name: Unittests
+      run: |
+        - r -e 'if (any(as.data.frame(devtools::test())[["error"]])) stop("Some tests failed.")'
+    - name: Codecov
+      run: |
+        r -e 'covr::codecov()'
+    - name: install
+      run: |
+        r -e 'devtools::install()'
+    - name: checkrhub_mswin
+      run:
+        r -e "install.packages('rhub')"
+        Rscript inst/rhubcheck.R "windows-x86_64-devel"
+    - name: checkrhub_macos
+      run:
+        Rscript inst/rhubcheck.R "macos-highsierra-release-cran"

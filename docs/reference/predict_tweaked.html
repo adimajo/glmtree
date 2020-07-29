@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Random initialization of the segmentation — initialization • glmtree</title>
+<title>Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows. — predict_tweaked • glmtree</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Random initialization of the segmentation — initialization" />
-<meta property="og:description" content="This function randomy initializes the segmentation." />
+<meta property="og:title" content="Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows. — predict_tweaked" />
+<meta property="og:description" content="This function applies the logistic regression predict after carefully removing observations of categorical features' levels absent from the training set.." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,27 +103,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Random initialization of the segmentation</h1>
+    <h1>Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows.</h1>
     
-    <div class="hidden name"><code>initialization.Rd</code></div>
+    <div class="hidden name"><code>predict_tweaked.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function randomy initializes the segmentation.</p>
+    <p>This function applies the logistic regression predict after carefully removing observations of categorical features' levels absent from the training set..</p>
     </div>
 
-    <pre class="usage"><span class='fu'>initialization</span>(<span class='no'>K</span>, <span class='no'>n</span>)</pre>
+    <pre class="usage"><span class='fu'>predict_tweaked</span>(<span class='no'>model</span>, <span class='no'>df</span>, <span class='no'>c_iter</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>K</th>
-      <td><p>The number of segments to start with (maximum number of segments there'll be in the end).</p></td>
+      <th>model</th>
+      <td><p>The logistic regression model to use to predict on a test set.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>The number of observations to draw.</p></td>
+      <th>df</th>
+      <td><p>The whole test set which class has to be predicted.</p></td>
+    </tr>
+    <tr>
+      <th>c_iter</th>
+      <td><p>The segment considered (given by the tree).</p></td>
     </tr>
     </table>
 

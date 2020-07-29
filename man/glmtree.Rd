@@ -4,10 +4,17 @@
 \alias{glmtree}
 \title{Logistic regression tree by Stochastic-Expectation-Maximization}
 \usage{
-glmtree(x, y, K = 10, iterations = 200, test = FALSE,
-  validation = FALSE, proportions = c(0.3), criterion = "bic",
-  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100,
-  maxdepth = 5))
+glmtree(
+  x,
+  y,
+  K = 10,
+  iterations = 200,
+  test = FALSE,
+  validation = FALSE,
+  proportions = c(0.3),
+  criterion = "bic",
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100, maxdepth = 5)
+)
 }
 \arguments{
 \item{x}{The features to use for prediction.}

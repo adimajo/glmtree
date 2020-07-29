@@ -39,3 +39,12 @@ test_that("cutDataset works with no test and no validation", {
   expect_null(test_de_cut2[[3]])
   expect_null(test_de_cut3[[3]])
 })
+
+test_that("cutDataset errors with some proportion values", {
+  expect_error(cutDataset(20, c(-0.1), test = T, validation = F), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed=TRUE)
+  expect_error(cutDataset(20, c(1.1), test = T, validation = F), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed=TRUE)
+
+  expect_error(cutDataset(20, c(-0.1), test = F, validation = T), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed=TRUE)
+  expect_error(cutDataset(20, c(1.1), test = F, validation = T), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed=TRUE)
+})
+
