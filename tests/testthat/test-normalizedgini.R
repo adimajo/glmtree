@@ -6,4 +6,5 @@ test_that("normalizedGini works", {
   gini <- normalizedGini(actual = actual, predicted = predicted)
   expect_lt(gini, 1)
   expect_gt(gini, 0)
+  expect_error(normalizedGini(c(1, 1, 1, 0, 0), c(0.7, 0.9, 0.5, 0.6)))
 })
