@@ -180,8 +180,10 @@ glmtree <-
 
 
       if (class(criterion_iter[[i]]) == "matrix") {
-        criterion_iter[[i]] = normalizedGini(actual = criterion_iter[[i]][, 1],
-                                             predicted = criterion_iter[[i]][, 2])
+        criterion_iter[[i]] <- normalizedGini(
+          actual = criterion_iter[[i]][, 1],
+          predicted = criterion_iter[[i]][, 2]
+        )
       }
 
       message("The ", criterion, " criterion for iteration ", i, " is ", criterion_iter[[i]])
