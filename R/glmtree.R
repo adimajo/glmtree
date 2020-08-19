@@ -161,14 +161,19 @@ glmtree <-
         }
       }
 
-      message(paste(
-        "The",
+      if (class(criterion_iter[[i]]) == "matrix") {
+        criterion_iter[[i]] = normalizedGini(actual = criterion_iter[[i]][, 1],
+                                             predicted = criterion_iter[[i]][, 2])
+      }
+
+      message(
+        "The ",
         criterion,
-        "criterion for iteration",
+        " criterion for iteration ",
         i,
-        "is",
+        " is ",
         criterion_iter[[i]]
-      ))
+      )
 
       # Mise à jour éventuelle de la meilleure solution actuelle (+burn-in de 100 itérations)
       if (i >= 50 &
