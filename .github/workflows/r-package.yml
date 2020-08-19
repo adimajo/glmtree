@@ -19,25 +19,25 @@ jobs:
           sudo apt-get install libssh2-1-dev -y
           sudo apt-get install libcurl4-openssl-dev -y
       - name: Install devtools
-      run: install.packages("devtools")
-      shell: Rscript {0}
+        run: install.packages("devtools")
+        shell: Rscript {0}
       - name: Check code style
-      run: Rscript inst/lint.R
+        run: Rscript inst/lint.R
       - name: Install dependencies
-      run: devtools::install_deps()
-      shell: Rscript {0}
+        run: devtools::install_deps()
+        shell: Rscript {0}
       - name: Check documentation
-      run: Rscript inst/document.R
+        run: Rscript inst/document.R
       - name: Check package (as CRAN)
-      run: devtools::check(document = FALSE, args = "--no-tests", error_on = "all")
-      shell: Rscript {0}
+        run: devtools::check(document = FALSE, args = "--no-tests", error_on = "all")
+        shell: Rscript {0}
       - name: Testthat
-      run: devtools::test()
-      shell: Rscript {0}
+        run: devtools::test()
+        shell: Rscript {0}
       - name: Coverage
-      run: print(devtools::test_coverage())
-      shell: Rscript {0}
+        run: print(devtools::test_coverage())
+        shell: Rscript {0}
       - name: Check on Mac OS
-      run: Rscript inst/rhubcheck.R "macos-highsierra-release-cran"
+        run: Rscript inst/rhubcheck.R "macos-highsierra-release-cran"
       - name: Check on Windows
-      run: Rscript inst/rhubcheck.R "windows-x86_64-devel"
+        run: Rscript inst/rhubcheck.R "windows-x86_64-devel"
