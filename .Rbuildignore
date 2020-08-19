@@ -4,4 +4,4 @@
 ^\.Rproj\.user$
 ^docs$
 README.md
-
+^.github/.*$
