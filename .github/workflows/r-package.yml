@@ -27,7 +27,7 @@ jobs:
       run: devtools::install_deps()
       shell: Rscript {0}
       - name: Check documentation
-      run: Rscript inst/documentation.R
+      run: Rscript inst/document.R
       - name: Check package (as CRAN)
       run: devtools::check(document = FALSE, args = "--no-tests", error_on = "all")
       shell: Rscript {0}
