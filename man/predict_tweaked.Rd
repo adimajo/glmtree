@@ -13,6 +13,9 @@ predict_tweaked(model, df, c_iter)
 
 \item{c_iter}{The segment considered (given by the tree).}
 }
+\value{
+A dataframe of predictions (in rows: the observations, in cols: the class probabilities) given by the model given in input, eventually tweaked if some levels are unknown to it.
+}
 \description{
 This function applies the logistic regression predict after carefully removing observations of categorical features' levels absent from the training set..
 }

@@ -70,11 +70,6 @@ if (require(partykit, quietly = TRUE)) {
 
 tree = glmtree::glmtree(x = data[,c("x1", "x2")], y = data$y)
 
-# Storing the user's par
-old_par = par()
-
-par(mfrow=c(1,1))
-
 plot(unlist(tree@performance$criterionEvolution), type="l")
 
 data$c_map <- factor(apply(predict(tree@best.tree$tree,data,type="prob"),1,function(p) names(which.max(p))))
@@ -95,7 +90,6 @@ for (j in levels(data$c_map)) {
 
 normalizedGini(test$y,pred)
 
-par(old_par)
 ```
 
 

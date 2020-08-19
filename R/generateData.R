@@ -4,6 +4,7 @@
 #' @param n The number of observations to draw.
 #' @param scenario The "no tree" scenario denotes the first scenario where there is a single logistic regression generating the data. The "tree" scenario generates data from the second data generating mechanism where there are three logistic regressions.
 #' @param visualize Whether (TRUE) or not (FALSE) to plot the generated data.
+#' @return Generates and returns data according to a true logistic regression tree (if scenario = "tree") or a single regression tree (if scenario = "no tree"). Eventually plots this dataset (if visualize = TRUE).
 #' @keywords glmtree
 #' @author Adrien Ehrhardt
 #' @export

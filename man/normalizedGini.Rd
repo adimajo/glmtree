@@ -11,6 +11,9 @@ normalizedGini(actual, predicted)
 
 \item{predicted}{The vector of the probabilities predicted by the classification rule.}
 }
+\value{
+The Gini index of the predicted probabilities as a single `num`.
+}
 \description{
 This function calculates the Gini index of a classification rule outputting probabilities. It is a classical metric in the context of Credit Scoring.
 It is equal to 2 times the AUC (Area Under ROC Curve) minus 1.

@@ -16,6 +16,10 @@ test_that("cutDataset works with only test", {
 
 test_that("cutDataset errors with test and validation and only one proportion", {
   expect_error(cutDataset(20, c(0.1), test = T, validation = T))
+  expect_error(cutDataset(20, c(-0.1), test = F, validation = T))
+  expect_error(cutDataset(20, c(1.1), test = F, validation = T))
+  expect_error(cutDataset(20, c(-0.1), test = T, validation = F))
+  expect_error(cutDataset(20, c(1.1), test = T, validation = F))
 })
 
 test_that("cutDataset works with test and validation", {

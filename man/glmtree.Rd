@@ -28,6 +28,9 @@ glmtree(x, y, K = 10, iterations = 200, test = FALSE,
 
 \item{ctree_controls}{The controls to use for `partykit::ctree`.}
 }
+\value{
+An S4 object of class `glmtree` that contains the parameters used to search for the logistic regression tree, the best tree it found, and its performance.
+}
 \description{
 This function produces a logistic regression tree: a decision tree with logistic regressions at its leaves.
 }

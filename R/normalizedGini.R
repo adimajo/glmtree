@@ -4,6 +4,7 @@
 #' It is equal to 2 times the AUC (Area Under ROC Curve) minus 1.
 #' @param actual The numeric binary vector of the actual labels observed.
 #' @param predicted The vector of the probabilities predicted by the classification rule.
+#' @return The Gini index of the predicted probabilities as a single `num`.
 #' @keywords gini index
 #' @export
 #' @author Adrien Ehrhardt

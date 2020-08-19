@@ -10,6 +10,7 @@
 #' @param proportions The list of the proportions wanted for test and validation set. Not used when both test and validation are false. Only the first is used when there is only one of either test or validation that is set to TRUE. Produces an error when the sum is greater to one. Default: list(0.2,0.2) so that the training set has 0.6 of the input observations.
 #' @param criterion The criterion ('gini','aic','bic') to use to choose the best discretization scheme among the generated ones (default: 'gini'). Nota Bene: it is best to use 'gini' only when test is set to TRUE and 'aic' or 'bic' when it is not. When using 'aic' or 'bic' with a test set, the likelihood is returned as there is no need to penalize for generalization purposes.
 #' @param ctree_controls The controls to use for `partykit::ctree`.
+#' @return An S4 object of class `glmtree` that contains the parameters used to search for the logistic regression tree, the best tree it found, and its performance.
 #' @keywords glmtree
 #' @importFrom magrittr "%>%"
 #' @author Adrien Ehrhardt

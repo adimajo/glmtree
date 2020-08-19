@@ -4,6 +4,7 @@
 #' @param model The logistic regression model to use to predict on a test set.
 #' @param df The whole test set which class has to be predicted.
 #' @param c_iter The segment considered (given by the tree).
+#' @return A dataframe of predictions (in rows: the observations, in cols: the class probabilities) given by the model given in input, eventually tweaked if some levels are unknown to it.
 #' @keywords internal
 #' @author Adrien Ehrhardt
 
