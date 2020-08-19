@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class glmtree — glmdisc-class • glmtree</title>
+<title>Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows. — predict_tweaked • glmtree</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Class glmtree — glmdisc-class" />
-<meta property="og:description" content="Class glmtree represents a logistic regression tree scheme associated with its optimal logistic regression models." />
+<meta property="og:title" content="Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows. — predict_tweaked" />
+<meta property="og:description" content="This function applies the logistic regression predict after carefully removing observations of categorical features' levels absent from the training set.." />
 
 
 
@@ -111,29 +111,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class glmtree</h1>
-    <small class="dont-index">Source: <a href='https://github.com/adimajo/glmtree/blob/master/R/allClasses.R'><code>R/allClasses.R</code></a></small>
-    <div class="hidden name"><code>glmdisc-class.Rd</code></div>
+    <h1>Tweaked predict to take into account levels that are not in the training set but in the test set and remove these rows.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/adimajo/glmtree/blob/master/R/predict_tweaked.R'><code>R/predict_tweaked.R</code></a></small>
+    <div class="hidden name"><code>predict_tweaked.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class <code>glmtree</code> represents a logistic regression tree scheme associated with its optimal logistic regression models.</p>
+    <p>This function applies the logistic regression predict after carefully removing observations of categorical features' levels absent from the training set..</p>
     </div>
 
+    <pre class="usage"><span class='fu'>predict_tweaked</span>(<span class='no'>model</span>, <span class='no'>df</span>, <span class='no'>c_iter</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>model</th>
+      <td><p>The logistic regression model to use to predict on a test set.</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>The whole test set which class has to be predicted.</p></td>
+    </tr>
+    <tr>
+      <th>c_iter</th>
+      <td><p>The segment considered (given by the tree).</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<dl'>
-<dt><code>parameters</code></dt><dd><p>The parameters associated with the method.</p></dd>
-
-<dt><code>best.tree</code></dt><dd><p>The best discretization scheme found by the method given its parameters.</p></dd>
-
-<dt><code>performance</code></dt><dd><p>The performance obtained with the method given its parameters.</p></dd>
-
-</dl>
+    <p>A dataframe of predictions (in rows: the observations, in cols: the class probabilities) given by the model given in input, eventually tweaked if some levels are unknown to it.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -9,17 +9,18 @@
 #' @export
 #' @author Adrien Ehrhardt
 #' @examples
-#' normalizedGini(c(1,1,1,0,0),c(0.7,0.9,0.5,0.6,0.3))
-
-
+#' normalizedGini(c(1, 1, 1, 0, 0), c(0.7, 0.9, 0.5, 0.6, 0.3))
 normalizedGini <- function(actual, predicted) {
   Gini <- function(a, p) {
-    if (length(a) !=  length(p))
+    if (length(a) != length(p)) {
       stop("Actual and Predicted need to be equal lengths!")
+    }
     temp.df <-
-      data.frame(actual = a,
-                 pred = p,
-                 range = c(1:length(a)))
+      data.frame(
+        actual = a,
+        pred = p,
+        range = c(1:length(a))
+      )
     temp.df <- temp.df[order(-temp.df$pred, temp.df$range), ]
     population.delta <- 1 / length(a)
     total.losses <- sum(a)

@@ -10,7 +10,6 @@
 #' @export
 #' @examples
 #' generateData(scenario = "tree")
-
 generateData <-
   function(n = 100,
            scenario = "tree",
@@ -25,46 +24,52 @@ generateData <-
 
     if (scenario == "tree") {
       # We produce three clusters...
-      n_clusters = 3
-      data = matrix(0, nrow = n, ncol = 5)
-      vraisemblance_generation = vector("numeric", length = n_clusters)
+      n_clusters <- 3
+      data <- matrix(0, nrow = n, ncol = 5)
+      vraisemblance_generation <- vector("numeric", length = n_clusters)
 
       # ... where y is generated from three different logistic regressions.
-      theta = list()
-      theta[[1]] = c(0, -1, 0.5)
-      theta[[2]] = c(0, -0.5, 1.5)
-      theta[[3]] = c(0, 1, -0.5)
+      theta <- list()
+      theta[[1]] <- c(0, -1, 0.5)
+      theta[[2]] <- c(0, -0.5, 1.5)
+      theta[[3]] <- c(0, 1, -0.5)
 
       # For each observation, we calculate the subsequent log-likelihood and generate y
       for (c in seq(2, 2 * n_clusters, 2)) {
-        x_cont = matrix(
+        x_cont <- matrix(
           stats::rnorm(floor(n / n_clusters) * 2, mean = 0, sd = 1.5),
           nrow = floor(n / n_clusters),
           ncol = 2
         )
-        x_cat = replicate(floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5), replace =
-                                                          TRUE))
-        x = cbind(x_cat, x_cont)
-        log_odd = apply(x_cont, 1, function(row)
-          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row)
-        y = stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
+        x_cat <- replicate(floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5),
+          replace =
+            TRUE
+        ))
+        x <- cbind(x_cat, x_cont)
+        log_odd <- apply(x_cont, 1, function(row) {
+          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row
+        })
+        y <- stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
         data[(1 + (c / 2 - 1) * floor(n / n_clusters)):(c / 2 * floor(n /
-                                                                        n_clusters)), ] <- cbind(x, y, rep(c / 2, floor(n / n_clusters)))
+          n_clusters)), ] <- cbind(x, y, rep(c / 2, floor(n / n_clusters)))
         vraisemblance_generation[c] <- sum(log_odd)
       }
 
       if (n - 3 * floor(n / n_clusters) > 0) {
-        x_cont = matrix(
+        x_cont <- matrix(
           stats::rnorm((n - 3 * floor(n / n_clusters)) * 2, mean = 0, sd = 1.5),
           nrow = n - 3 * floor(n / n_clusters),
           ncol = 2
         )
-        x_cat = replicate(n - 3 * floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5), replace =
-                                                                  TRUE))
-        x = cbind(x_cat, x_cont)
-        log_odd = apply(x_cont, 1, function(row)
-          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row)
-        y = stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
+        x_cat <- replicate(n - 3 * floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5),
+          replace =
+            TRUE
+        ))
+        x <- cbind(x_cat, x_cont)
+        log_odd <- apply(x_cont, 1, function(row) {
+          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row
+        })
+        y <- stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
         data[(3 * floor(n / n_clusters) + 1):n, ] <-
           cbind(x, y, rep(c / 2, n - 3 * floor(n / n_clusters)))
         vraisemblance_generation[c] <-
@@ -91,16 +96,15 @@ generateData <-
       }
 
       return(data)
-
     } else if (scenario == "no tree") {
       # We produce three "fake" clusters
-      n_clusters = 3
-      data = matrix(0, nrow = n, ncol = 3)
-      vraisemblance_generation = vector("numeric", length = n_clusters)
-      theta = c(3, 0.5, -1)
+      n_clusters <- 3
+      data <- matrix(0, nrow = n, ncol = 3)
+      vraisemblance_generation <- vector("numeric", length = n_clusters)
+      theta <- c(3, 0.5, -1)
 
       for (c in 1:n_clusters) {
-        x = matrix(
+        x <- matrix(
           stats::rnorm(
             floor(n / n_clusters) * 2,
             mean = 3 * c,
@@ -109,23 +113,25 @@ generateData <-
           nrow = floor(n / n_clusters),
           ncol = 2
         )
-        log_odd = apply(x, 1, function(row)
-          theta[1] + t(theta[2:3]) %*% row)
-        y = stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
+        log_odd <- apply(x, 1, function(row) {
+          theta[1] + t(theta[2:3]) %*% row
+        })
+        y <- stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
         data[(1 + (c - 1) * floor(n / n_clusters)):(c * floor(n / n_clusters)), ] <-
           cbind(x, y)
         vraisemblance_generation[c] <- sum(log_odd)
       }
 
       if (n - 3 * floor(n / n_clusters) > 0) {
-        x = matrix(
+        x <- matrix(
           stats::rnorm((n - 3 * floor(n / n_clusters)) * 2, mean = 3 * c, sd = 1),
           nrow = (n - 3 * floor(n / n_clusters)),
           ncol = 2
         )
-        log_odd = apply(x, 1, function(row)
-          theta[1] + t(theta[2:3]) %*% row)
-        y = stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
+        log_odd <- apply(x, 1, function(row) {
+          theta[1] + t(theta[2:3]) %*% row
+        })
+        y <- stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
         data[(3 * floor(n / n_clusters) + 1):n, ] <- cbind(x, y)
         vraisemblance_generation[c] <-
           vraisemblance_generation[c] + sum(log_odd)
@@ -145,8 +151,7 @@ generateData <-
       }
 
       return(data)
-
-    } else
+    } else {
       stop(simpleError("Invalid scenario."))
-
+    }
   }
