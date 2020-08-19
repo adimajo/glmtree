@@ -35,12 +35,15 @@ glmtree(
 
 \item{ctree_controls}{The controls to use for `partykit::ctree`.}
 }
+\value{
+An S4 object of class `glmtree` that contains the parameters used to search for the logistic regression tree, the best tree it found, and its performance.
+}
 \description{
 This function produces a logistic regression tree: a decision tree with logistic regressions at its leaves.
 }
 \examples{
-data = generateData(n = 100, scenario = "no tree")
-glmtree(x = data[,c("x1", "x2")], y = data$y, K = 5, iterations = 80, criterion = "aic")
+data <- generateData(n = 100, scenario = "no tree")
+glmtree(x = data[, c("x1", "x2")], y = data$y, K = 5, iterations = 80, criterion = "aic")
 }
 \author{
 Adrien Ehrhardt

@@ -1,7 +1,7 @@
 context("test-initialization")
 
 test_that("initialization works", {
-  init = initialization(10, 100)
+  init <- initialization(10, 100)
   expect_length(init, 100)
   expect_vector(init)
   expect_true(is.factor(init))

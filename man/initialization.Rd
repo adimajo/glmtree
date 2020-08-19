@@ -11,6 +11,9 @@ initialization(K, n)
 
 \item{n}{The number of observations to draw.}
 }
+\value{
+A vector of length n containing a factor with K levels (from 1 to K) drawn with replacement.
+}
 \description{
 This function randomy initializes the segmentation.
 }

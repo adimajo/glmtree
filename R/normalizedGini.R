@@ -4,21 +4,23 @@
 #' It is equal to 2 times the AUC (Area Under ROC Curve) minus 1.
 #' @param actual The numeric binary vector of the actual labels observed.
 #' @param predicted The vector of the probabilities predicted by the classification rule.
+#' @return The Gini index of the predicted probabilities as a single `num`.
 #' @keywords gini index
 #' @export
 #' @author Adrien Ehrhardt
 #' @examples
-#' normalizedGini(c(1,1,1,0,0),c(0.7,0.9,0.5,0.6,0.3))
-
-
+#' normalizedGini(c(1, 1, 1, 0, 0), c(0.7, 0.9, 0.5, 0.6, 0.3))
 normalizedGini <- function(actual, predicted) {
   Gini <- function(a, p) {
-    if (length(a) !=  length(p))
+    if (length(a) != length(p)) {
       stop("Actual and Predicted need to be equal lengths!")
+    }
     temp.df <-
-      data.frame(actual = a,
-                 pred = p,
-                 range = c(1:length(a)))
+      data.frame(
+        actual = a,
+        pred = p,
+        range = c(1:length(a))
+      )
     temp.df <- temp.df[order(-temp.df$pred, temp.df$range), ]
     population.delta <- 1 / length(a)
     total.losses <- sum(a)

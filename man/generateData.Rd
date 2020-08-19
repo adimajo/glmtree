@@ -13,6 +13,9 @@ generateData(n = 100, scenario = "tree", visualize = FALSE)
 
 \item{visualize}{Whether (TRUE) or not (FALSE) to plot the generated data.}
 }
+\value{
+Generates and returns data according to a true logistic regression tree (if scenario = "tree") or a single regression tree (if scenario = "no tree"). Eventually plots this dataset (if visualize = TRUE).
+}
 \description{
 This function generates data from two logistic regression trees: one with three apparent clusters (in terms of variance of the features) but a single logistic regression generating y | x, and one with a single apparent cluster but three different logistic regressions generating y | x given a categorical feature.
 }
