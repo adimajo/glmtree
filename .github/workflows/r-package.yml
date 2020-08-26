@@ -32,6 +32,9 @@ jobs:
       - name: Check package (as CRAN)
         run: devtools::check(document = FALSE, args = "--no-tests", error_on = "note")
         shell: Rscript {0}
+      - name: Install package
+        run: devtools::install()
+        shell: Rscript {0}
       - name: Testthat
         run: devtools::test()
         shell: Rscript {0}
@@ -39,6 +42,10 @@ jobs:
         run: print(devtools::test_coverage())
         shell: Rscript {0}
       - name: Check on Mac OS
-        run: Rscript inst/rhubcheck.R "macos-highsierra-release-cran"
+        env:
+          RHUB_TOKEN: ${{ secrets.RHUB_TOKEN }}
+        run: Rscript inst/rhubcheck.R "macos-highsierra-release-cran" "$RHUB_TOKEN"
       - name: Check on Windows
-        run: Rscript inst/rhubcheck.R "windows-x86_64-devel"
+        env:
+          RHUB_TOKEN: ${{ secrets.RHUB_TOKEN }}
+        run: Rscript inst/rhubcheck.R "windows-x86_64-devel" "$RHUB_TOKEN"

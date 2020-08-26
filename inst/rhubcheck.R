@@ -3,15 +3,17 @@ if (!require(rhub, quietly = TRUE)) {
 }
 
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) != 1L) {
-  stop("Incorrect number of args, needs 1: platform (string)")
+if (length(args) != 2L) {
+  stop("Incorrect number of args, needs 2: platform (string), token (string)")
 }
 
 platform <- args[[1L]]
+token <- args[[2L]]
 if (!is.element(platform, rhub::platforms()[[1L]])) {
   stop(paste(platform, "not in rhub::platforms()[[1L]]"))
 }
-
+rhub::validate_email(email = substr(utils::maintainer(pkg = "glmtree"), regexec("<", utils::maintainer(pkg = "glmtree"))[[1]][1] + 1, nchar(utils::maintainer(pkg = "glmtree")) - 1),
+                     token = token)
 cr <- rhub::check(platform = platform, show_status = TRUE)
 statuses <- cr[[".__enclos_env__"]][["private"]][["status_"]]
 
