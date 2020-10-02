@@ -74,7 +74,7 @@
 <code>glmtree</code>: logistic regression trees for efficient segmentation</h1>
                         <h4 class="author">Adrien Ehrhardt</h4>
             
-            <h4 class="date">2020-08-26</h4>
+            <h4 class="date">2020-10-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/adimajo/glmtree/blob/master/vignettes/glmtree.Rmd"><code>vignettes/glmtree.Rmd</code></a></small>
       <div class="hidden name"><code>glmtree.Rmd</code></div>
@@ -122,7 +122,7 @@
 }
 
 <span class="fu"><a href="../reference/normalizedGini.html">normalizedGini</a></span>(<span class="no">test</span>$<span class="no">y</span>,<span class="no">pred</span>)</pre></body></html></div>
-<pre><code>## [1] 0.6559116</code></pre>
+<pre><code>## [1] 0.6604591</code></pre>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mixed</span>, <span class="kw">choix</span> <span class="kw">=</span> <span class="st">'ind'</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"none"</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_pca1-3.png" width="700"></p>
 </div>
@@ -140,226 +140,109 @@
 ## 
 ##     glmtree</code></pre>
 <p><img src="glmtree_files/figure-html/segmentation_mob1-1.png" width="700"></p>
-<pre><code>## [1] 0.6724791</code></pre>
+<pre><code>## [1] 0.6793697</code></pre>
 </div>
 <div id="glmtree-approach" class="section level3">
 <h3 class="hasAnchor">
 <a href="#glmtree-approach" class="anchor"></a><code>glmtree</code> approach</h3>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">tree</span> <span class="kw">=</span> <span class="kw pkg">glmtree</span><span class="kw ns">::</span><span class="fu"><a href="../reference/glmtree.html">glmtree</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">data</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x1"</span>, <span class="st">"x2"</span>)], <span class="kw">y</span> <span class="kw">=</span> <span class="no">data</span>$<span class="no">y</span>)</pre></body></html></div>
 <pre><code>## The bic criterion for iteration 1 is 0</code></pre>
-<pre><code>## The bic criterion for iteration 2 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 3 is -231.977756577519</code></pre>
-<pre><code>## The bic criterion for iteration 4 is -231.977756577519</code></pre>
-<pre><code>## The bic criterion for iteration 5 is -231.977756577519</code></pre>
-<pre><code>## The bic criterion for iteration 6 is -231.977756577519</code></pre>
-<pre><code>## The bic criterion for iteration 7 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 8 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 9 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 10 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 11 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 12 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 13 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 14 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 15 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 16 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 17 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 18 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 19 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 20 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 21 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 22 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 23 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 24 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 25 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 26 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 27 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 28 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 29 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 30 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 31 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 32 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 33 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 34 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 35 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 36 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 37 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 38 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 39 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 40 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 41 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 42 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 43 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 44 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 45 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 46 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 47 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 48 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 49 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 50 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 51 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 52 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 53 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 54 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 55 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 56 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 57 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 58 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 59 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 60 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 61 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 62 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 63 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 64 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 65 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 66 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 67 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 68 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 69 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 70 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 71 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 72 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 73 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 74 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 75 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 76 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 77 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 78 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 79 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 80 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 81 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 82 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 83 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 84 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 85 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 86 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 87 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 88 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 89 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 90 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 91 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 92 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 93 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 94 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 95 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 96 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 97 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 98 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 99 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 100 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 101 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 102 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 103 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 104 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 105 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 106 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 107 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 108 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 109 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 110 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 111 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 112 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 113 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 114 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 115 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 116 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 117 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 118 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 119 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 120 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 121 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 122 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 123 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 124 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 125 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 126 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 127 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 128 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 129 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 130 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 131 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 132 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 133 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 134 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 135 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 136 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 137 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 138 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 139 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 140 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 141 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 142 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 143 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 144 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 145 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 146 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 147 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 148 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 149 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 150 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 151 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 152 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 153 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 154 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 155 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 156 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 157 is -217.461374413269</code></pre>
-<pre><code>## The bic criterion for iteration 158 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 159 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 160 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 161 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 162 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 163 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 164 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 165 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 166 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 167 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 168 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 169 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 170 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 171 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 172 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 173 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 174 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 175 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 176 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 177 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 178 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 179 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 180 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 181 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 182 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 183 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 184 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 185 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 186 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 187 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 188 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 189 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 190 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 191 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 192 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 193 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 194 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 195 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 196 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 197 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 198 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 199 is -232.85233924487</code></pre>
-<pre><code>## The bic criterion for iteration 200 is -232.85233924487</code></pre>
-<div class="sourceCode" id="cb212"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">tree</span>@<span class="kw">performance</span>$<span class="no">criterionEvolution</span>), <span class="kw">type</span><span class="kw">=</span><span class="st">"l"</span>)</pre></body></html></div>
+<pre><code>## The bic criterion for iteration 2 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 3 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 4 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 5 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 6 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 7 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 8 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 9 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 10 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 11 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 12 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 13 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 14 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 15 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 16 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 17 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 18 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 19 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 20 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 21 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 22 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 23 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 24 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 25 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 26 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 27 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 28 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 29 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 30 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 31 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 32 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 33 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 34 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 35 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 36 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 37 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 38 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 39 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 40 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 41 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 42 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 43 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 44 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 45 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 46 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 47 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 48 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 49 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 50 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 51 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 52 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 53 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 54 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 55 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 56 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 57 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 58 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 59 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 60 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 61 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 62 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 63 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 64 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 65 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 66 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 67 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 68 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 69 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 70 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 71 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 72 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 73 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 74 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 75 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 76 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 77 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 78 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 79 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 80 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 81 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 82 is -225.650543595755</code></pre>
+<pre><code>## The bic criterion for iteration 83 is -225.650543595755</code></pre>
+<div class="sourceCode" id="cb95"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">tree</span>@<span class="kw">performance</span>$<span class="no">criterionEvolution</span>), <span class="kw">type</span><span class="kw">=</span><span class="st">"l"</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree1-1.png" width="700"></p>
-<div class="sourceCode" id="cb213"><html><body><pre class="r"><span class="no">data</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">data</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
+<div class="sourceCode" id="cb96"><html><body><pre class="r"><span class="no">data</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">data</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
 <span class="no">test</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">data</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
 
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">data</span>$<span class="no">c_map</span>)</pre></body></html></div>
 <pre><code>## 
-##  10 
+##   4 
 ## 200</code></pre>
-<div class="sourceCode" id="cb215"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">data</span>[,<span class="fl">1</span>],<span class="no">data</span>[,<span class="fl">2</span>],<span class="kw">pch</span><span class="kw">=</span><span class="fl">2</span>+<span class="no">data</span>[,<span class="fl">3</span>],<span class="kw">col</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">data</span>$<span class="no">c_map</span>),<span class="kw">xlab</span><span class="kw">=</span><span class="st">"First coordinate"</span>,<span class="kw">ylab</span><span class="kw">=</span><span class="st">"Second coordinate"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb98"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">data</span>[,<span class="fl">1</span>],<span class="no">data</span>[,<span class="fl">2</span>],<span class="kw">pch</span><span class="kw">=</span><span class="fl">2</span>+<span class="no">data</span>[,<span class="fl">3</span>],<span class="kw">col</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">data</span>$<span class="no">c_map</span>),<span class="kw">xlab</span><span class="kw">=</span><span class="st">"First coordinate"</span>,<span class="kw">ylab</span><span class="kw">=</span><span class="st">"Second coordinate"</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree1-2.png" width="700"></p>
-<div class="sourceCode" id="cb216"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb99"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree1-3.png" width="700"></p>
-<div class="sourceCode" id="cb217"><html><body><pre class="r"><span class="no">pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">0</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb100"><html><body><pre class="r"><span class="no">pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">0</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)
 
 <span class="kw">for</span> (<span class="no">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">data</span>$<span class="no">c_map</span>)) {
   <span class="no">modele</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="no">y</span> ~ <span class="no">x1</span> + <span class="no">x2</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">data</span>[<span class="no">data</span>$<span class="no">c_map</span><span class="kw">==</span><span class="no">j</span>,], <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>))
@@ -367,7 +250,7 @@
 }
 
 <span class="fu"><a href="../reference/normalizedGini.html">normalizedGini</a></span>(<span class="no">test</span>$<span class="no">y</span>,<span class="no">pred</span>)</pre></body></html></div>
-<pre><code>## [1] 0.6724791</code></pre>
+<pre><code>## [1] 0.6793697</code></pre>
 </div>
 </div>
 <div id="one-cluster-three-predictive-laws" class="section level2">
@@ -376,9 +259,9 @@
 <div id="simulation-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#simulation-1" class="anchor"></a>Simulation</h3>
-<div class="sourceCode" id="cb219"><html><body><pre class="r"><span class="no">data</span> <span class="kw">=</span> <span class="fu"><a href="../reference/generateData.html">generateData</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">scenario</span> <span class="kw">=</span> <span class="st">"tree"</span>, <span class="kw">visualize</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb102"><html><body><pre class="r"><span class="no">data</span> <span class="kw">=</span> <span class="fu"><a href="../reference/generateData.html">generateData</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">scenario</span> <span class="kw">=</span> <span class="st">"tree"</span>, <span class="kw">visualize</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_simulation2-1.png" width="700"><img src="glmtree_files/figure-html/segmentation_simulation2-2.png" width="700"><img src="glmtree_files/figure-html/segmentation_simulation2-3.png" width="700"></p>
-<div class="sourceCode" id="cb220"><html><body><pre class="r"><span class="no">int_train</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>)
+<div class="sourceCode" id="cb103"><html><body><pre class="r"><span class="no">int_train</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>)
 
 <span class="no">test</span> <span class="kw">=</span> <span class="no">data</span>[-<span class="no">int_train</span>,]
 <span class="no">data</span> <span class="kw">=</span> <span class="no">data</span>[<span class="no">int_train</span>,]</pre></body></html></div>
@@ -386,9 +269,9 @@
 <div id="pca-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#pca-1" class="anchor"></a>PCA</h3>
-<div class="sourceCode" id="cb221"><html><body><pre class="r"><span class="no">mixed</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/FAMD.html">FAMD</a></span>(<span class="no">data</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>,<span class="st">"x3"</span>)])</pre></body></html></div>
+<div class="sourceCode" id="cb104"><html><body><pre class="r"><span class="no">mixed</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/FAMD.html">FAMD</a></span>(<span class="no">data</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>,<span class="st">"x3"</span>)])</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_pca2-1.png" width="700"><img src="glmtree_files/figure-html/segmentation_pca2-2.png" width="700"><img src="glmtree_files/figure-html/segmentation_pca2-3.png" width="700"><img src="glmtree_files/figure-html/segmentation_pca2-4.png" width="700"><img src="glmtree_files/figure-html/segmentation_pca2-5.png" width="700"></p>
-<div class="sourceCode" id="cb222"><html><body><pre class="r"><span class="no">dim_famd</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">mixed</span>,<span class="no">test</span>)$<span class="no">coord</span>[,<span class="st">"Dim 1"</span>] <span class="kw">&lt;</span> <span class="fl">0</span>
+<div class="sourceCode" id="cb105"><html><body><pre class="r"><span class="no">dim_famd</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">mixed</span>,<span class="no">test</span>)$<span class="no">coord</span>[,<span class="st">"Dim 1"</span>] <span class="kw">&lt;</span> <span class="fl">0</span>
 
 <span class="no">pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">0</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)
 
@@ -398,246 +281,246 @@
 }
 
 <span class="fu"><a href="../reference/normalizedGini.html">normalizedGini</a></span>(<span class="no">test</span>$<span class="no">y</span>,<span class="no">pred</span>)</pre></body></html></div>
-<pre><code>## [1] 0.1693104</code></pre>
+<pre><code>## [1] 0.1205429</code></pre>
 </div>
 <div id="mob-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mob-1" class="anchor"></a>MOB</h3>
-<div class="sourceCode" id="cb224"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">partykit</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
+<div class="sourceCode" id="cb107"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">partykit</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
   <span class="no">mob_data</span> <span class="kw">=</span> <span class="kw pkg">partykit</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/partykit/man/glmtree.html">glmtree</a></span>(<span class="kw">formula</span> <span class="kw">=</span> <span class="no">y</span> ~ <span class="no">x1</span> + <span class="no">x2</span> +<span class="no">x3</span> <span class="kw">|</span> <span class="no">x1</span> + <span class="no">x2</span> + <span class="no">x3</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">data</span>, <span class="kw">family</span> <span class="kw">=</span> <span class="no">binomial</span>)
   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mob_data</span>)
   <span class="fu"><a href="../reference/normalizedGini.html">normalizedGini</a></span>(<span class="no">test</span>$<span class="no">y</span>, <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">mob_data</span>,<span class="no">test</span>))
 }</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_mob2-1.png" width="700"></p>
-<pre><code>## [1] 0.2925877</code></pre>
+<pre><code>## [1] 0.4322791</code></pre>
 </div>
 <div id="glmtree-approach-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#glmtree-approach-1" class="anchor"></a><code>glmtree</code> approach</h3>
-<div class="sourceCode" id="cb226"><html><body><pre class="r"><span class="no">tree</span> <span class="kw">=</span> <span class="kw pkg">glmtree</span><span class="kw ns">::</span><span class="fu"><a href="../reference/glmtree.html">glmtree</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">data</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>)], <span class="kw">y</span> <span class="kw">=</span> <span class="no">data</span>$<span class="no">y</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb109"><html><body><pre class="r"><span class="no">tree</span> <span class="kw">=</span> <span class="kw pkg">glmtree</span><span class="kw ns">::</span><span class="fu"><a href="../reference/glmtree.html">glmtree</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">data</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>)], <span class="kw">y</span> <span class="kw">=</span> <span class="no">data</span>$<span class="no">y</span>)</pre></body></html></div>
 <pre><code>## The bic criterion for iteration 1 is 0</code></pre>
-<pre><code>## The bic criterion for iteration 2 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 3 is -314.53005402539</code></pre>
-<pre><code>## The bic criterion for iteration 4 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 5 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 6 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 7 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 8 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 9 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 10 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 11 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 12 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 13 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 14 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 15 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 16 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 17 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 18 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 19 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 20 is -300.665596393775</code></pre>
-<pre><code>## The bic criterion for iteration 21 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 22 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 23 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 24 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 25 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 26 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 27 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 28 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 29 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 30 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 31 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 32 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 33 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 34 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 35 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 36 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 37 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 38 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 39 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 40 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 41 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 42 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 43 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 44 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 45 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 46 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 47 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 48 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 49 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 50 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 51 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 52 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 53 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 54 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 55 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 56 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 57 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 58 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 59 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 60 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 61 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 62 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 63 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 64 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 65 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 66 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 67 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 68 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 69 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 70 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 71 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 72 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 73 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 74 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 75 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 76 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 77 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 78 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 79 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 80 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 81 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 82 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 83 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 84 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 85 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 86 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 87 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 88 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 89 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 90 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 91 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 92 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 93 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 94 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 95 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 96 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 97 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 98 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 99 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 100 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 101 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 102 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 103 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 104 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 105 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 106 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 107 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 108 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 109 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 110 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 111 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 112 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 113 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 114 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 115 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 116 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 117 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 118 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 119 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 120 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 121 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 122 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 123 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 124 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 125 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 126 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 127 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 128 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 129 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 130 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 131 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 132 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 133 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 134 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 135 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 136 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 137 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 138 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 139 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 140 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 141 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 142 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 143 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 144 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 145 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 146 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 147 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 148 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 149 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 150 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 151 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 152 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 153 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 154 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 155 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 156 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 157 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 158 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 159 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 160 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 161 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 162 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 163 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 164 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 165 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 166 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 167 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 168 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 169 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 170 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 171 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 172 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 173 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 174 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 175 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 176 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 177 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 178 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 179 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 180 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 181 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 182 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 183 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 184 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 185 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 186 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 187 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 188 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 189 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 190 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 191 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 192 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 193 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 194 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 195 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 196 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 197 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 198 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 199 is -291.158742886988</code></pre>
-<pre><code>## The bic criterion for iteration 200 is -291.158742886988</code></pre>
-<div class="sourceCode" id="cb427"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">tree</span>@<span class="kw">performance</span>$<span class="no">criterionEvolution</span>), <span class="kw">type</span><span class="kw">=</span><span class="st">"l"</span>)</pre></body></html></div>
+<pre><code>## The bic criterion for iteration 2 is -305.907700290713</code></pre>
+<pre><code>## The bic criterion for iteration 3 is -305.907700290713</code></pre>
+<pre><code>## The bic criterion for iteration 4 is -305.907700290713</code></pre>
+<pre><code>## The bic criterion for iteration 5 is -305.907700290713</code></pre>
+<pre><code>## The bic criterion for iteration 6 is -305.907700290713</code></pre>
+<pre><code>## The bic criterion for iteration 7 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 8 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 9 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 10 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 11 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 12 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 13 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 14 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 15 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 16 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 17 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 18 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 19 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 20 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 21 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 22 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 23 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 24 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 25 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 26 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 27 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 28 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 29 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 30 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 31 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 32 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 33 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 34 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 35 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 36 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 37 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 38 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 39 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 40 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 41 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 42 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 43 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 44 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 45 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 46 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 47 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 48 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 49 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 50 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 51 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 52 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 53 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 54 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 55 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 56 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 57 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 58 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 59 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 60 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 61 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 62 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 63 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 64 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 65 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 66 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 67 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 68 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 69 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 70 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 71 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 72 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 73 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 74 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 75 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 76 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 77 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 78 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 79 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 80 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 81 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 82 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 83 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 84 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 85 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 86 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 87 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 88 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 89 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 90 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 91 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 92 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 93 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 94 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 95 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 96 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 97 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 98 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 99 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 100 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 101 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 102 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 103 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 104 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 105 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 106 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 107 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 108 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 109 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 110 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 111 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 112 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 113 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 114 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 115 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 116 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 117 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 118 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 119 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 120 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 121 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 122 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 123 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 124 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 125 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 126 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 127 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 128 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 129 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 130 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 131 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 132 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 133 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 134 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 135 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 136 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 137 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 138 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 139 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 140 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 141 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 142 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 143 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 144 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 145 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 146 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 147 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 148 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 149 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 150 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 151 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 152 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 153 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 154 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 155 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 156 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 157 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 158 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 159 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 160 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 161 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 162 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 163 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 164 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 165 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 166 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 167 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 168 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 169 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 170 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 171 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 172 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 173 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 174 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 175 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 176 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 177 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 178 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 179 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 180 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 181 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 182 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 183 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 184 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 185 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 186 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 187 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 188 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 189 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 190 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 191 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 192 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 193 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 194 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 195 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 196 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 197 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 198 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 199 is -279.110033109741</code></pre>
+<pre><code>## The bic criterion for iteration 200 is -279.110033109741</code></pre>
+<div class="sourceCode" id="cb310"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">tree</span>@<span class="kw">performance</span>$<span class="no">criterionEvolution</span>), <span class="kw">type</span><span class="kw">=</span><span class="st">"l"</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree2-1.png" width="700"></p>
-<div class="sourceCode" id="cb428"><html><body><pre class="r"><span class="no">data</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">data</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
+<div class="sourceCode" id="cb311"><html><body><pre class="r"><span class="no">data</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">data</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
 <span class="no">test</span>$<span class="no">c_map</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>,<span class="no">test</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"prob"</span>),<span class="fl">1</span>,<span class="kw">function</span>(<span class="no">p</span>) <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">p</span>))))
 
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">data</span>$<span class="no">c</span>,<span class="no">data</span>$<span class="no">c_map</span>)</pre></body></html></div>
 <pre><code>##    
-##     10  7
-##   1 31 33
-##   2 69  0
-##   3  0 67</code></pre>
-<div class="sourceCode" id="cb430"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">data</span>[,<span class="fl">1</span>],<span class="no">data</span>[,<span class="fl">2</span>],<span class="kw">pch</span><span class="kw">=</span><span class="fl">2</span>+<span class="no">data</span>[,<span class="fl">3</span>],<span class="kw">col</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">data</span>$<span class="no">c_map</span>),<span class="kw">xlab</span><span class="kw">=</span><span class="st">"First coordinate"</span>,<span class="kw">ylab</span><span class="kw">=</span><span class="st">"Second coordinate"</span>)</pre></body></html></div>
+##      1  9
+##   1 34 34
+##   2 66  0
+##   3  0 66</code></pre>
+<div class="sourceCode" id="cb313"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">data</span>[,<span class="fl">1</span>],<span class="no">data</span>[,<span class="fl">2</span>],<span class="kw">pch</span><span class="kw">=</span><span class="fl">2</span>+<span class="no">data</span>[,<span class="fl">3</span>],<span class="kw">col</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">data</span>$<span class="no">c_map</span>),<span class="kw">xlab</span><span class="kw">=</span><span class="st">"First coordinate"</span>,<span class="kw">ylab</span><span class="kw">=</span><span class="st">"Second coordinate"</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree2-2.png" width="700"></p>
-<div class="sourceCode" id="cb431"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb314"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">tree</span>)</pre></body></html></div>
 <p><img src="glmtree_files/figure-html/segmentation_glmtree2-3.png" width="700"></p>
-<div class="sourceCode" id="cb432"><html><body><pre class="r"><span class="no">pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">0</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb315"><html><body><pre class="r"><span class="no">pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fl">0</span>, <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">0.2</span>*<span class="fl">1000</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)
 
 <span class="kw">for</span> (<span class="no">j</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span>(<span class="no">data</span>$<span class="no">c_map</span>)) {
   <span class="no">pred</span>[<span class="no">test</span>$<span class="no">c_map</span><span class="kw">==</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">data</span>$<span class="no">c_map</span>)[<span class="no">j</span>]] <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">tree</span>@<span class="kw">best.tree</span>$<span class="no">glms</span><span class="kw">[[</span><span class="no">j</span>]], <span class="no">test</span>[<span class="no">test</span>$<span class="no">c_map</span><span class="kw">==</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">data</span>$<span class="no">c_map</span>)[<span class="no">j</span>],], <span class="kw">type</span><span class="kw">=</span><span class="st">"response"</span>)
 }
 
 <span class="fu"><a href="../reference/normalizedGini.html">normalizedGini</a></span>(<span class="no">test</span>$<span class="no">y</span>,<span class="no">pred</span>)</pre></body></html></div>
-<pre><code>## [1] 0.3483163</code></pre>
+<pre><code>## [1] 0.4509215</code></pre>
 </div>
 </div>
 </div>

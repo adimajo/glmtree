@@ -71,11 +71,56 @@
   <div class="contents col-md-9">
 
 
-<div id="glmtree" class="section level1">
+<div id="logistic-regression-trees" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#glmtree" class="anchor"></a>glmtree</h1></div>
+<a href="#logistic-regression-trees" class="anchor"></a>Logistic regression trees</h1></div>
+<div id="table-of-contents" class="section level2">
+<h2 class="hasAnchor">
+<a href="#table-of-contents" class="anchor"></a>Table of Contents</h2>
+<ul>
+<li><a href="https://adimajo.github.io/glmtree">Documentation</a></li>
+<li><a href="#-installation">Installation instructions</a></li>
+<li><a href="https://github.com/adimajo/glmtree/issues/new/choose">Open an issue</a></li>
+</ul>
+</div>
+</div>
+<div id="glmtree" class="section level1">
+<h1 class="hasAnchor">
+<a href="#glmtree" class="anchor"></a>glmtree</h1>
 <p>The goal of glmtree is to build decision trees with logistic regressions at their leaves, so that the resulting model mixes non parametric VS parametric and stepwise VS linear approaches to have the best predictive results, yet maintaining interpretability.</p>
-<p>For further instructions, go to the vignette: clic “Get Started” or navigate to vignettes &gt; glmdisc.Rmd or go through the vignette directly in RStudio by typing “vignette(‘glmtree’)” once the package is installed and loaded.</p>
+<p>This is the implementation of glmtree as described in <em>Formalization and study of statistical problems in Credit Scoring</em>, Ehrhardt A. (see <a href="https://github.com/adimajo/manuscrit_these">manuscript</a> or <a href="https://adimajo.github.io/logistic_trees.html">web article</a>)</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the development version of <code>glmtree</code> from Github with:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"adimajo/glmtree"</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
+<p>Or alternatively directly from CRAN:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"glmtree"</span>)</pre></div>
+</div>
+<div id="documentation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h2>
+<div id="through-rstudio" class="section level3">
+<h3 class="hasAnchor">
+<a href="#through-rstudio" class="anchor"></a>Through R(Studio)</h3>
+<div id="getting-help" class="section level4">
+<h4 class="hasAnchor">
+<a href="#getting-help" class="anchor"></a>Getting help</h4>
+<p>The help pages of this package can be reached by typing <code><a href="reference/glmtree.html">help(glmtree)</a></code> (or <code><a href="reference/glmtree.html">?glmtree</a></code>) once the package is installed and loaded.</p>
+</div>
+<div id="vignette" class="section level4">
+<h4 class="hasAnchor">
+<a href="#vignette" class="anchor"></a>Vignette</h4>
+<p>For further instructions, go to <code>vignettes</code> &gt; <code>glmtree.Rmd</code> or go through the vignette directly in RStudio by typing <code><a href="articles/glmtree.html">vignette('glmtree')</a></code> once the package is installed and loaded.</p>
+</div>
+</div>
+<div id="online" class="section level3">
+<h3 class="hasAnchor">
+<a href="#online" class="anchor"></a>Online</h3>
+<p>Both the help pages and the vignette are available online as <a href="http://adimajo.github.io/glmtree">a Github page built with <code>pkgdown</code></a>.</p>
+</div>
+</div>
 </div>
 
   </div>
