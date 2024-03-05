@@ -179,7 +179,7 @@ glmtree <-
       }
 
 
-      if (class(criterion_iter[[i]]) == "matrix") {
+      if (methods::is(criterion_iter[[i]], "matrix")) {
         criterion_iter[[i]] <- normalizedGini(
           actual = criterion_iter[[i]][, 1],
           predicted = criterion_iter[[i]][, 2]
