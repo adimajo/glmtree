@@ -17,39 +17,37 @@ vignette: >
 
 ```{r segmentation_simulation1}
 library(glmtree)
-data = generateData(n = 1000, scenario = "no tree", visualize = TRUE)
+data <- generateData(n = 1000, scenario = "no tree", visualize = TRUE)
 
-int_train = sample.int(n = 1000, size = 0.2*1000)
+int_train <- sample.int(n = 1000, size = 0.2 * 1000)
 
-test = data[-int_train,]
-data = data[int_train,]
-
+test <- data[-int_train, ]
+data <- data[int_train, ]
 ```
 
 ### PCA
 
 ```{r segmentation_pca1}
 library(FactoMineR)
-mixed = PCA(data[,c("x1","x2")])
+mixed <- PCA(data[, c("x1", "x2")])
 
-data$pca1 = predict(mixed, data)$coord[,1]
-data$pca2 = predict(mixed, data)$coord[,2]
-test$pca1 = predict(mixed, test)$coord[,1]
-test$pca2 = predict(mixed, test)$coord[,2]
+data$pca1 <- predict(mixed, data)$coord[, 1]
+data$pca2 <- predict(mixed, data)$coord[, 2]
+test$pca1 <- predict(mixed, test)$coord[, 1]
+test$pca2 <- predict(mixed, test)$coord[, 2]
 
-data$cluster = ifelse(data$pca1 > 1, 1, ifelse(data$pca1 > 0, 2, 3))
-test$cluster = ifelse(test$pca1 > 1, 1, ifelse(test$pca1 > 0, 2, 3))
+data$cluster <- ifelse(data$pca1 > 1, 1, ifelse(data$pca1 > 0, 2, 3))
+test$cluster <- ifelse(test$pca1 > 1, 1, ifelse(test$pca1 > 0, 2, 3))
 
-pred = matrix(0, nrow = 0.2*1000, ncol = 1)
+pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
 
 for (j in 1:3) {
-  modele = glm(y ~ x1 + x2, data = data[data$cluster==j,], family=binomial(link = "logit"))
-  pred[test$cluster==j] = predict(modele, test[test$cluster==j,], type="response")
+  modele <- glm(y ~ x1 + x2, data = data[data$cluster == j, ], family = binomial(link = "logit"))
+  pred[test$cluster == j] <- predict(modele, test[test$cluster == j, ], type = "response")
 }
 
-normalizedGini(test$y,pred)
-plot(mixed, choix = 'ind', label = "none")
-
+normalizedGini(test$y, pred)
+plot(mixed, choix = "ind", label = "none")
 ```
 
 
@@ -57,9 +55,9 @@ plot(mixed, choix = 'ind', label = "none")
 
 ```{r segmentation_mob1}
 if (require(partykit, quietly = TRUE)) {
-  mob_data = partykit::glmtree(formula = y ~ x1 + x2 | x1 + x2, data = data, family = binomial)
+  mob_data <- partykit::glmtree(formula = y ~ x1 + x2 | x1 + x2, data = data, family = binomial)
   plot(mob_data)
-  normalizedGini(test$y, predict(mob_data,test))
+  normalizedGini(test$y, predict(mob_data, test))
 }
 ```
 
@@ -67,29 +65,27 @@ if (require(partykit, quietly = TRUE)) {
 ### `glmtree` approach
 
 ```{r segmentation_glmtree1, warning=FALSE}
+tree <- glmtree::glmtree(x = data[, c("x1", "x2")], y = data$y)
 
-tree = glmtree::glmtree(x = data[,c("x1", "x2")], y = data$y)
+plot(unlist(tree@performance$criterionEvolution), type = "l")
 
-plot(unlist(tree@performance$criterionEvolution), type="l")
-
-data$c_map <- factor(apply(predict(tree@best.tree$tree,data,type="prob"),1,function(p) names(which.max(p))))
-test$c_map <- factor(apply(predict(tree@best.tree$tree,data,type="prob"),1,function(p) names(which.max(p))))
+data$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
+test$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
 
 table(data$c_map)
 
-plot(data[,1],data[,2],pch=2+data[,3],col=as.numeric(data$c_map),xlab="First coordinate",ylab="Second coordinate")
+plot(data[, 1], data[, 2], pch = 2 + data[, 3], col = as.numeric(data$c_map), xlab = "First coordinate", ylab = "Second coordinate")
 
 plot(tree@best.tree$tree)
 
-pred = matrix(0, nrow = 0.2*1000, ncol = 1)
+pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
 
 for (j in levels(data$c_map)) {
-  modele = glm(y ~ x1 + x2, data = data[data$c_map==j,], family=binomial(link = "logit"))
-  pred[test$c_map==j] = predict(modele, test[test$c_map==j,], type="response")
+  modele <- glm(y ~ x1 + x2, data = data[data$c_map == j, ], family = binomial(link = "logit"))
+  pred[test$c_map == j] <- predict(modele, test[test$c_map == j, ], type = "response")
 }
 
-normalizedGini(test$y,pred)
-
+normalizedGini(test$y, pred)
 ```
 
 
@@ -98,65 +94,63 @@ normalizedGini(test$y,pred)
 ### Simulation
 
 ```{r segmentation_simulation2}
-data = generateData(n = 1000, scenario = "tree", visualize = TRUE)
+data <- generateData(n = 1000, scenario = "tree", visualize = TRUE)
 
-int_train = sample.int(n = 1000, size = 0.2*1000)
+int_train <- sample.int(n = 1000, size = 0.2 * 1000)
 
-test = data[-int_train,]
-data = data[int_train,]
+test <- data[-int_train, ]
+data <- data[int_train, ]
 ```
 
 ### PCA
 
 ```{r segmentation_pca2}
-mixed = FAMD(data[,c("x1","x2","x3")])
+mixed <- FAMD(data[, c("x1", "x2", "x3")])
 
-dim_famd = predict(mixed,test)$coord[,"Dim 1"] < 0
+dim_famd <- predict(mixed, test)$coord[, "Dim 1"] < 0
 
-pred = matrix(0, nrow = 0.2*1000, ncol = 1)
+pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
 
-for (j in c(TRUE,FALSE)) {
-  modele = glm(y ~ x1 + x2 + x3, data = data[dim_famd==j,], family=binomial(link = "logit"))
-  pred[dim_famd==j] = predict(modele, test[dim_famd==j,], type="response")
+for (j in c(TRUE, FALSE)) {
+  modele <- glm(y ~ x1 + x2 + x3, data = data[dim_famd == j, ], family = binomial(link = "logit"))
+  pred[dim_famd == j] <- predict(modele, test[dim_famd == j, ], type = "response")
 }
 
-normalizedGini(test$y,pred)
+normalizedGini(test$y, pred)
 ```
 
 ### MOB
 
 ```{r segmentation_mob2, warning=FALSE, message=FALSE}
 if (require(partykit, quietly = TRUE)) {
-  mob_data = partykit::glmtree(formula = y ~ x1 + x2 +x3 | x1 + x2 + x3, data = data, family = binomial)
+  mob_data <- partykit::glmtree(formula = y ~ x1 + x2 + x3 | x1 + x2 + x3, data = data, family = binomial)
   plot(mob_data)
-  normalizedGini(test$y, predict(mob_data,test))
+  normalizedGini(test$y, predict(mob_data, test))
 }
 ```
 
 ### `glmtree` approach
 
 ```{r segmentation_glmtree2, warning=FALSE}
+tree <- glmtree::glmtree(x = data[, c("x1", "x2", "x3")], y = data$y)
 
-tree = glmtree::glmtree(x = data[,c("x1", "x2", "x3")], y = data$y)
+plot(unlist(tree@performance$criterionEvolution), type = "l")
 
-plot(unlist(tree@performance$criterionEvolution), type="l")
+data$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
+test$c_map <- factor(apply(predict(tree@best.tree$tree, test, type = "prob"), 1, function(p) names(which.max(p))))
 
-data$c_map <- factor(apply(predict(tree@best.tree$tree,data,type="prob"),1,function(p) names(which.max(p))))
-test$c_map <- factor(apply(predict(tree@best.tree$tree,test,type="prob"),1,function(p) names(which.max(p))))
+table(data$c, data$c_map)
 
-table(data$c,data$c_map)
-
-plot(data[,1],data[,2],pch=2+data[,3],col=as.numeric(data$c_map),xlab="First coordinate",ylab="Second coordinate")
+plot(data[, 1], data[, 2], pch = 2 + data[, 3], col = as.numeric(data$c_map), xlab = "First coordinate", ylab = "Second coordinate")
 
 plot(tree@best.tree$tree)
 
-pred = matrix(0, nrow = 0.2*1000, ncol = 1)
+pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
 
 for (j in 1:nlevels(data$c_map)) {
-  pred[test$c_map==levels(data$c_map)[j]] = predict(tree@best.tree$glms[[j]], test[test$c_map==levels(data$c_map)[j],], type="response")
+  pred[test$c_map == levels(data$c_map)[j]] <- predict(tree@best.tree$glms[[j]], test[test$c_map == levels(data$c_map)[j], ], type = "response")
 }
 
-normalizedGini(test$y,pred)
-
+normalizedGini(test$y, pred)
 ```
 
