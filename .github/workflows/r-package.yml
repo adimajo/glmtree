@@ -38,10 +38,6 @@ jobs:
       - name: Coverage
         run: print(devtools::test_coverage())
         shell: Rscript {0}
-      - name: Check on Mac OS
-        env:
-          RHUB_TOKEN: ${{ secrets.RHUB_TOKEN }}
-        run: Rscript inst/rhubcheck.R "macos-highsierra-release-cran" "$RHUB_TOKEN"
       - name: Check on Windows
         env:
           RHUB_TOKEN: ${{ secrets.RHUB_TOKEN }}
