@@ -1,53 +1,43 @@
-context("test-cutdataset")
-
 test_that("cutDataset works with only validation", {
-  test_de_cut <- cutDataset(20, c(0.1), test = F, validation = T)
-  expect_type(test_de_cut[[1]], "integer")
-  expect_type(test_de_cut[[2]], "integer")
-  expect_null(test_de_cut[[3]])
+  set.seed(1)
+  split <- cutDataset(20, c(0.1), test = FALSE, validation = TRUE)
+  expect_length(split$validation, 2)
+  expect_length(split$train, 18)
+  expect_null(split$test)
 })
 
 test_that("cutDataset works with only test", {
-  test_de_cut <- cutDataset(20, c(0.1), test = T, validation = F)
-  expect_type(test_de_cut[[1]], "integer")
-  expect_type(test_de_cut[[2]], "integer")
-  expect_null(test_de_cut[[3]])
+  set.seed(1)
+  split <- cutDataset(20, c(0.25), test = TRUE, validation = FALSE)
+  expect_length(split$test, 5)
+  expect_length(split$train, 15)
+  expect_null(split$validation)
 })
 
-test_that("cutDataset errors with test and validation and only one proportion", {
-  expect_error(cutDataset(20, c(0.1), test = T, validation = T))
-  expect_error(cutDataset(20, c(-0.1), test = F, validation = T))
-  expect_error(cutDataset(20, c(1.1), test = F, validation = T))
-  expect_error(cutDataset(20, c(-0.1), test = T, validation = F))
-  expect_error(cutDataset(20, c(1.1), test = T, validation = F))
-})
-
-test_that("cutDataset works with test and validation", {
-  test_de_cut <- cutDataset(20, c(0.1, 0.1), test = T, validation = T)
-  expect_type(test_de_cut[[1]], "integer")
-  expect_type(test_de_cut[[2]], "integer")
-  expect_type(test_de_cut[[3]], "integer")
+test_that("cutDataset works with test and validation, and sets are disjoint and complete", {
+  set.seed(1)
+  split <- cutDataset(20, c(0.1, 0.3), test = TRUE, validation = TRUE)
+  expect_length(split$test, 2)
+  expect_length(split$validation, 6)
+  expect_length(split$train, 12)
+  expect_setequal(c(split$train, split$test, split$validation), 1:20)
 })
 
 test_that("cutDataset works with no test and no validation", {
-  test_de_cut1 <- cutDataset(20, c(0.1, 0.1), test = F, validation = F)
-  test_de_cut2 <- cutDataset(20, c(0.1), test = F, validation = F)
-  test_de_cut3 <- cutDataset(20, test = F, validation = F)
-  expect_type(test_de_cut1[[1]], "integer")
-  expect_type(test_de_cut2[[1]], "integer")
-  expect_type(test_de_cut3[[1]], "integer")
-  expect_null(test_de_cut1[[2]])
-  expect_null(test_de_cut2[[2]])
-  expect_null(test_de_cut3[[2]])
-  expect_null(test_de_cut1[[3]])
-  expect_null(test_de_cut2[[3]])
-  expect_null(test_de_cut3[[3]])
+  split <- cutDataset(20, c(0.1, 0.1), test = FALSE, validation = FALSE)
+  expect_setequal(split$train, 1:20)
+  expect_null(split$validation)
+  expect_null(split$test)
+  expect_setequal(cutDataset(20, test = FALSE, validation = FALSE)$train, 1:20)
 })
 
-test_that("cutDataset errors with some proportion values", {
-  expect_error(cutDataset(20, c(-0.1), test = T, validation = F), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed = TRUE)
-  expect_error(cutDataset(20, c(1.1), test = T, validation = F), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed = TRUE)
-
-  expect_error(cutDataset(20, c(-0.1), test = F, validation = T), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed = TRUE)
-  expect_error(cutDataset(20, c(1.1), test = F, validation = T), "Argument proportions should contain 1 argument strictly between 0 and 1", fixed = TRUE)
+test_that("cutDataset errors with invalid proportions", {
+  one <- "Argument proportions should contain 1 argument strictly between 0 and 1"
+  expect_error(cutDataset(20, c(-0.1), test = TRUE, validation = FALSE), one, fixed = TRUE)
+  expect_error(cutDataset(20, c(1.1), test = TRUE, validation = FALSE), one, fixed = TRUE)
+  expect_error(cutDataset(20, c(-0.1), test = FALSE, validation = TRUE), one, fixed = TRUE)
+  expect_error(cutDataset(20, c(1.1), test = FALSE, validation = TRUE), one, fixed = TRUE)
+  two <- "Argument proportions should contain 2 positive arguments which sum should be less than 1"
+  expect_error(cutDataset(20, c(0.1), test = TRUE, validation = TRUE), two, fixed = TRUE)
+  expect_error(cutDataset(20, c(0.5, 0.5), test = TRUE, validation = TRUE), two, fixed = TRUE)
 })
