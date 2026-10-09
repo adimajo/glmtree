@@ -71,4 +71,5 @@ writeLines(c(
   "segments = number of leaves / segments; tree-based methods use leaves of at least 5% of the training data and depth 4",
   "", capture
 ), file.path(outdir, "summary.txt"))
+writeLines(utils::capture.output(print(utils::sessionInfo())), file.path(outdir, "session-info.txt"))
 cat(paste(capture, collapse = "\n"), "\n")
