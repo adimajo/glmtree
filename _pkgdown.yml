@@ -1,0 +1,16 @@
+url: https://adimajo.github.io/glmtree
+template:
+  bootstrap: 5
+
+reference:
+  - title: Fitting
+    contents:
+      - glmtree
+  - title: Using a fitted model
+    contents:
+      - predict
+      - glmtree-class
+  - title: Utilities and simulation
+    contents:
+      - normalizedGini
+      - generateData
