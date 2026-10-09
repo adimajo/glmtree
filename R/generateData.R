@@ -22,68 +22,22 @@ generateData <-
       stop(simpleError("Parameter visualize needs to be logical."))
     }
 
+    n_clusters <- 3
+    # equal sized clusters, the remainder goes to the last one
+    cluster <- c(rep(seq_len(n_clusters), each = n %/% n_clusters), rep(n_clusters, n %% n_clusters))
+
     if (scenario == "tree") {
-      # We produce three clusters...
-      n_clusters <- 3
-      data <- matrix(0, nrow = n, ncol = 5)
-      vraisemblance_generation <- vector("numeric", length = n_clusters)
-
-      # ... where y is generated from three different logistic regressions.
-      theta <- list()
-      theta[[1]] <- c(0, -1, 0.5)
-      theta[[2]] <- c(0, -0.5, 1.5)
-      theta[[3]] <- c(0, 1, -0.5)
-
-      # For each observation, we calculate the subsequent log-likelihood and generate y
-      for (c in seq(2, 2 * n_clusters, 2)) {
-        x_cont <- matrix(
-          stats::rnorm(floor(n / n_clusters) * 2, mean = 0, sd = 1.5),
-          nrow = floor(n / n_clusters),
-          ncol = 2
-        )
-        x_cat <- replicate(floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5),
-          replace =
-            TRUE
-        ))
-        x <- cbind(x_cat, x_cont)
-        log_odd <- apply(x_cont, 1, function(row) {
-          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row
-        })
-        y <- stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
-        data[(1 + (c / 2 - 1) * floor(n / n_clusters)):(c / 2 * floor(n /
-          n_clusters)), ] <- cbind(x, y, rep(c / 2, floor(n / n_clusters)))
-        vraisemblance_generation[c] <- sum(log_odd)
-      }
-
-      if (n - 3 * floor(n / n_clusters) > 0) {
-        x_cont <- matrix(
-          stats::rnorm((n - 3 * floor(n / n_clusters)) * 2, mean = 0, sd = 1.5),
-          nrow = n - 3 * floor(n / n_clusters),
-          ncol = 2
-        )
-        x_cat <- replicate(n - 3 * floor(n / n_clusters), sample(c(c - 1, c), 1, c(0.5, 0.5),
-          replace =
-            TRUE
-        ))
-        x <- cbind(x_cat, x_cont)
-        log_odd <- apply(x_cont, 1, function(row) {
-          theta[[c / 2]][1] + t(theta[[c / 2]][2:3]) %*% row
-        })
-        y <- stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
-        data[(3 * floor(n / n_clusters) + 1):n, ] <-
-          cbind(x, y, rep(c / 2, n - 3 * floor(n / n_clusters)))
-        vraisemblance_generation[c] <-
-          vraisemblance_generation[c] + sum(log_odd)
-      }
-
-      # Everything is put in a dataframe
-      data <- data.frame(data)
-      colnames(data) <- c("x1", "x2", "x3", "y", "c")
-      data$x1 <- as.factor(data$x1)
+      # Three clusters, each with its own pair of levels of x1 and its own logistic regression on (x2, x3)
+      theta <- rbind(c(0, -1, 0.5), c(0, -0.5, 1.5), c(0, 1, -0.5))
+      x1 <- 2 * cluster - 1 + stats::rbinom(n, 1, 0.5)
+      x2 <- stats::rnorm(n, mean = 0, sd = 1.5)
+      x3 <- stats::rnorm(n, mean = 0, sd = 1.5)
+      log_odd <- theta[cluster, 1] + theta[cluster, 2] * x2 + theta[cluster, 3] * x3
+      y <- stats::rbinom(n, 1, stats::plogis(log_odd))
+      data <- data.frame(x1 = as.factor(x1), x2 = x2, x3 = x3, y = as.numeric(y), c = as.numeric(cluster))
 
       if (visualize) {
-        # graphics::par(mfrow=c(2,2))
-        for (c in 1:n_clusters) {
+        for (c in seq_len(n_clusters)) {
           graphics::plot(
             data[data$c == c, 2],
             data[data$c == c, 3],
@@ -92,53 +46,16 @@ generateData <-
             ylab = "Second coordinate"
           )
         }
-        # graphics::par(mfrow=c(1,1))
       }
 
       return(data)
     } else if (scenario == "no tree") {
-      # We produce three "fake" clusters
-      n_clusters <- 3
-      data <- matrix(0, nrow = n, ncol = 3)
-      vraisemblance_generation <- vector("numeric", length = n_clusters)
+      # Three "fake" clusters of the features, a single logistic regression
       theta <- c(3, 0.5, -1)
-
-      for (c in 1:n_clusters) {
-        x <- matrix(
-          stats::rnorm(
-            floor(n / n_clusters) * 2,
-            mean = 3 * c,
-            sd = 1
-          ),
-          nrow = floor(n / n_clusters),
-          ncol = 2
-        )
-        log_odd <- apply(x, 1, function(row) {
-          theta[1] + t(theta[2:3]) %*% row
-        })
-        y <- stats::rbinom(floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
-        data[(1 + (c - 1) * floor(n / n_clusters)):(c * floor(n / n_clusters)), ] <-
-          cbind(x, y)
-        vraisemblance_generation[c] <- sum(log_odd)
-      }
-
-      if (n - 3 * floor(n / n_clusters) > 0) {
-        x <- matrix(
-          stats::rnorm((n - 3 * floor(n / n_clusters)) * 2, mean = 3 * c, sd = 1),
-          nrow = (n - 3 * floor(n / n_clusters)),
-          ncol = 2
-        )
-        log_odd <- apply(x, 1, function(row) {
-          theta[1] + t(theta[2:3]) %*% row
-        })
-        y <- stats::rbinom(n - 3 * floor(n / n_clusters), 1, 1 / (1 + exp(-log_odd)))
-        data[(3 * floor(n / n_clusters) + 1):n, ] <- cbind(x, y)
-        vraisemblance_generation[c] <-
-          vraisemblance_generation[c] + sum(log_odd)
-      }
-
-      data <- data.frame(data)
-      colnames(data) <- c("x1", "x2", "y")
+      x1 <- stats::rnorm(n, mean = 3 * cluster, sd = 1)
+      x2 <- stats::rnorm(n, mean = 3 * cluster, sd = 1)
+      y <- stats::rbinom(n, 1, stats::plogis(theta[1] + theta[2] * x1 + theta[3] * x2))
+      data <- data.frame(x1 = x1, x2 = x2, y = as.numeric(y))
 
       if (visualize) {
         graphics::plot(
