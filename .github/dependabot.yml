@@ -1,0 +1,12 @@
+# Dependabot has no CRAN ecosystem: it can only keep the GitHub Actions up to date. R packages are
+# installed unpinned from the latest CRAN snapshot by r-lib/actions/setup-r-dependencies.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
