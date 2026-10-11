@@ -1,27 +1,38 @@
 Package: glmtree
 Type: Package
 Title: Logistic Regression Trees
-Version: 0.3.1
-Date: 2024-03-05
-Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@centraliens-lille.org",
+Version: 0.4.0
+Date: 2026-10-09
+Authors@R: c(person("Adrien", "Ehrhardt", email = "adrien.ehrhardt@polytechnique.edu",
                   role = c("aut", "cre")))
-Maintainer: Adrien Ehrhardt <adrien.ehrhardt@centraliens-lille.org>
+Maintainer: Adrien Ehrhardt <adrien.ehrhardt@polytechnique.edu>
 Description: A logistic regression tree is a decision tree with logistic regressions at its leaves. A particular stochastic expectation maximization algorithm is used to draw a few good trees, that are then assessed via the user's criterion of choice among BIC / AIC / test set Gini. The formal development is given in a PhD chapter, see Ehrhardt (2019) <https://github.com/adimajo/manuscrit_these/releases/>.
 License: GPL (>= 2)
 Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
 Imports:
-    partykit,
-    magrittr,
+    graphics,
     methods,
-    dplyr,
-    caret
+    partykit,
+    stats
 Suggests:
     FactoMineR,
     knitr,
-    testthat,
-    covr,
-    rmarkdown
-URL: https://adimajo.github.io
+    rmarkdown,
+    testthat (>= 3.0.0)
+URL: https://adimajo.github.io/glmtree/, https://github.com/adimajo/glmtree
 BugReports: https://github.com/adimajo/glmtree/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.3.1
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1
+Collate: 
+    'allClasses.R'
+    'cutDataset.R'
+    'generateData.R'
+    'glmtree.R'
+    'helpers.R'
+    'initialization.R'
+    'normalizedGini.R'
+    'predict.R'

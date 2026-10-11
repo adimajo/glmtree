@@ -13,37 +13,71 @@ glmtree(
   validation = FALSE,
   proportions = c(0.3),
   criterion = "bic",
-  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100, maxdepth = 5)
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 100, maxdepth = 5),
+  burn_in = min(50L, iterations\%/\%4L),
+  patience = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
-\item{x}{The features to use for prediction.}
+\item{x}{The features to use for prediction (data frame or matrix with numeric, integer and factor
+columns; characters and logicals are converted to factors). No missing values are allowed.}
 
-\item{y}{The binary / boolean labels to predict.}
+\item{y}{The binary / boolean labels to predict. The larger value (or the second level of a factor) is
+the positive class.}
 
 \item{K}{The number of segments to start with (maximum number of segments there'll be in the end).}
 
 \item{iterations}{The number of iterations to do in the SEM protocole (default: 200).}
 
-\item{test}{Boolean : True if the algorithm should use predictors to construct a test set on which to calculate the provided criterion using the best discretization scheme (chosen thanks to the provided criterion on either the test set (if true) or the training set (otherwise)) (default: TRUE).}
+\item{test}{Boolean : True if a test set should be held out, on which the \code{criterion} of the best
+tree is reported in \code{performance} (default: FALSE).}
 
-\item{validation}{Boolean : True if the algorithm should use predictors to construct a validation set on which to search for the best discretization scheme using the provided criterion (default: TRUE).}
+\item{validation}{Boolean : True if a validation set should be held out, on which the \code{criterion}
+is computed at each iteration to choose the best tree (default: FALSE, the criterion is then computed on
+the training set).}
 
-\item{proportions}{The list of the proportions wanted for test and validation set. Not used when both test and validation are false. Only the first is used when there is only one of either test or validation that is set to TRUE. Produces an error when the sum is greater to one. Default: list(0.2,0.2) so that the training set has 0.6 of the input observations.}
+\item{proportions}{The proportions of observations held out: \code{c(test, validation)} when both are
+requested, otherwise a single proportion for whichever is requested. Not used when both are FALSE.
+Errors when invalid (e.g. a sum greater than one). Default: 0.3.}
 
-\item{criterion}{The criterion ('gini','aic','bic') to use to choose the best discretization scheme among the generated ones (default: 'gini'). Nota Bene: it is best to use 'gini' only when test is set to TRUE and 'aic' or 'bic' when it is not. When using 'aic' or 'bic' with a test set, the likelihood is returned as there is no need to penalize for generalization purposes.}
+\item{criterion}{The criterion ('gini','aic','bic') used to choose the best tree among the generated
+ones (default: 'bic'). AIC and BIC are summed over segments (the BIC penalty of a segment uses the
+logarithm of its size) and are replaced by the log-likelihood when computed on held out data, where no
+penalty is needed. The Gini index is best used with a validation set.}
 
-\item{ctree_controls}{The controls to use for `partykit::ctree`.}
+\item{ctree_controls}{The controls to use for \code{partykit::ctree}.}
+
+\item{burn_in}{The number of first iterations that cannot be chosen as the best tree (default: the
+minimum of 50 and a quarter of \code{iterations}).}
+
+\item{patience}{If not \code{NULL}, the chain stops when the criterion did not improve for
+\code{patience} iterations (after the burn-in).}
+
+\item{verbose}{Whether to print the criterion at each iteration.}
 }
 \value{
-An S4 object of class `glmtree` that contains the parameters used to search for the logistic regression tree, the best tree it found, and its performance.
+An S4 object of class \code{\link{glmtree-class}} that contains the parameters used to search for the
+logistic regression tree, the best tree it found, and its performance. Use \code{\link{predict}}
+to predict on new data.
 }
 \description{
 This function produces a logistic regression tree: a decision tree with logistic regressions at its leaves.
+The segmentation of the observations is a latent variable: at each iteration a logistic regression is
+fitted in each segment, a conditional inference tree (\code{partykit::ctree}) is fitted to the current
+segmentation, and each observation is re-assigned to a segment drawn proportionally to the tree
+probability times the likelihood of its label under the segment's regression. A few good trees are
+kept along the chain and the best one is chosen according to \code{criterion}.
 }
 \examples{
-data <- generateData(n = 100, scenario = "no tree")
-glmtree(x = data[, c("x1", "x2")], y = data$y, K = 5, iterations = 80, criterion = "aic")
+set.seed(1)
+data <- generateData(n = 300, scenario = "tree")
+fit <- glmtree(
+  x = data[, c("x1", "x2", "x3")], y = data$y, K = 5, iterations = 20,
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 30, maxdepth = 3)
+)
+fit
+head(predict(fit, data[, c("x1", "x2", "x3")]))
 }
 \author{
 Adrien Ehrhardt

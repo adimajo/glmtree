@@ -1,156 +1,142 @@
 ---
-title: "`glmtree`: logistic regression trees for efficient segmentation"
+title: "Logistic regression trees with glmtree"
 author: "Adrien Ehrhardt"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{`glmtree` package}
+  %\VignetteIndexEntry{Logistic regression trees with glmtree}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-# Segmentation
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6, fig.height = 4.5)
+set.seed(2024)
+```
 
-## Three clusters, one predictive law
+A *logistic regression tree* is a decision tree whose leaves hold logistic regressions: the tree
+cuts the population into segments, and each segment gets its own scoring function. `glmtree`
+searches such a tree with a stochastic EM algorithm where the segment of each observation is a latent
+variable (see the manuscript linked in the `README`). This vignette shows the interface on the two
+simulated settings of `generateData()`, and compares with a single logistic regression and with the
+model-based recursive partitioning of `partykit::glmtree()`.
 
-### Simulation
-
-```{r segmentation_simulation1}
+```{r data}
 library(glmtree)
-data <- generateData(n = 1000, scenario = "no tree", visualize = TRUE)
-
-int_train <- sample.int(n = 1000, size = 0.2 * 1000)
-
-test <- data[-int_train, ]
-data <- data[int_train, ]
 ```
 
-### PCA
+## When there is a tree: three segments, three regressions
 
-```{r segmentation_pca1}
-library(FactoMineR)
-mixed <- PCA(data[, c("x1", "x2")])
+In the `"tree"` scenario the sign of the effect of `x2` and `x3` depends on a categorical feature
+`x1` (its six levels come in three pairs), so a single logistic regression is misspecified.
 
-data$pca1 <- predict(mixed, data)$coord[, 1]
-data$pca2 <- predict(mixed, data)$coord[, 2]
-test$pca1 <- predict(mixed, test)$coord[, 1]
-test$pca2 <- predict(mixed, test)$coord[, 2]
-
-data$cluster <- ifelse(data$pca1 > 1, 1, ifelse(data$pca1 > 0, 2, 3))
-test$cluster <- ifelse(test$pca1 > 1, 1, ifelse(test$pca1 > 0, 2, 3))
-
-pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
-
-for (j in 1:3) {
-  modele <- glm(y ~ x1 + x2, data = data[data$cluster == j, ], family = binomial(link = "logit"))
-  pred[test$cluster == j] <- predict(modele, test[test$cluster == j, ], type = "response")
-}
-
-normalizedGini(test$y, pred)
-plot(mixed, choix = "ind", label = "none")
+```{r tree-data}
+data <- generateData(n = 2000, scenario = "tree")
+train <- sample(nrow(data), 1400)
+features <- c("x1", "x2", "x3")
 ```
 
-
-### MOB
-
-```{r segmentation_mob1}
-if (require(partykit, quietly = TRUE)) {
-  mob_data <- partykit::glmtree(formula = y ~ x1 + x2 | x1 + x2, data = data, family = binomial)
-  plot(mob_data)
-  normalizedGini(test$y, predict(mob_data, test))
-}
+```{r tree-fit}
+fit <- glmtree(
+  x = data[train, features], y = data$y[train],
+  K = 5, iterations = 100,
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 80, maxdepth = 4)
+)
+fit
 ```
 
+`predict()` gives the probability of the positive class (or, with `type = "segment"`, the segment) of
+new observations; the fitted tree is `fit@best.tree$tree` (a `partykit` object that can be plotted) and
+the logistic regression of each segment is in `fit@best.tree$glms`.
 
-### `glmtree` approach
-
-```{r segmentation_glmtree1, warning=FALSE}
-tree <- glmtree::glmtree(x = data[, c("x1", "x2")], y = data$y)
-
-plot(unlist(tree@performance$criterionEvolution), type = "l")
-
-data$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
-test$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
-
-table(data$c_map)
-
-plot(data[, 1], data[, 2], pch = 2 + data[, 3], col = as.numeric(data$c_map), xlab = "First coordinate", ylab = "Second coordinate")
-
-plot(tree@best.tree$tree)
-
-pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
-
-for (j in levels(data$c_map)) {
-  modele <- glm(y ~ x1 + x2, data = data[data$c_map == j, ], family = binomial(link = "logit"))
-  pred[test$c_map == j] <- predict(modele, test[test$c_map == j, ], type = "response")
-}
-
-normalizedGini(test$y, pred)
+```{r tree-predict}
+table(true_cluster = data$c[-train], segment = predict(fit, data[-train, features], type = "segment"))
+plot(fit@best.tree$tree)
 ```
 
+The evolution of the criterion along the chain (here the BIC, computed on the training set, higher is
+better) shows when the chain settles; only iterations after the burn-in can be selected.
 
-## One "cluster", three predictive laws
-
-### Simulation
-
-```{r segmentation_simulation2}
-data <- generateData(n = 1000, scenario = "tree", visualize = TRUE)
-
-int_train <- sample.int(n = 1000, size = 0.2 * 1000)
-
-test <- data[-int_train, ]
-data <- data[int_train, ]
+```{r tree-evolution}
+plot(unlist(fit@performance$criterionEvolution), type = "l", xlab = "Iteration", ylab = "-BIC")
+abline(v = fit@performance$best_iteration, lty = 2)
 ```
 
-### PCA
+We compare the test-set Gini index (2 AUC - 1) with a single logistic regression and with
+`partykit::glmtree()` (model-based recursive partitioning, MOB), which looks for splits by a
+parameter instability test instead of a likelihood-based latent variable.
 
-```{r segmentation_pca2}
-mixed <- FAMD(data[, c("x1", "x2", "x3")])
+```{r tree-compare}
+logit <- glm(y ~ x1 + x2 + x3, data = data[train, ], family = binomial)
+mob <- partykit::glmtree(y ~ x2 + x3 | x1 + x2 + x3, data = data[train, ], family = binomial)
+c(
+  logit = normalizedGini(data$y[-train], predict(logit, data[-train, ], type = "response")),
+  mob = normalizedGini(data$y[-train], predict(mob, data[-train, ], type = "response")),
+  glmtree = normalizedGini(data$y[-train], predict(fit, data[-train, features]))
+)
+```
 
-dim_famd <- predict(mixed, test)$coord[, "Dim 1"] < 0
+## When there is no tree: apparent clusters but a single regression
 
-pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
+In the `"no tree"` scenario the features form three clusters, but `y` depends on them through one
+logistic regression. There is nothing to gain from segmenting, and a good method should not lose much
+by trying.
 
+```{r notree}
+data <- generateData(n = 2000, scenario = "no tree")
+train <- sample(nrow(data), 1400)
+fit <- glmtree(
+  x = data[train, c("x1", "x2")], y = data$y[train], K = 5, iterations = 100,
+  ctree_controls = partykit::ctree_control(alpha = 0.1, minbucket = 80, maxdepth = 4)
+)
+logit <- glm(y ~ x1 + x2, data = data[train, ], family = binomial)
+c(
+  logit = normalizedGini(data$y[-train], predict(logit, data[-train, ], type = "response")),
+  glmtree = normalizedGini(data$y[-train], predict(fit, data[-train, c("x1", "x2")]))
+)
+```
+
+## Choosing the best tree
+
+The chain draws many trees. Which one is returned depends on `criterion` (`"bic"`, `"aic"` or `"gini"`)
+and on where it is computed:
+
+* by default (`validation = FALSE`) the AIC or BIC of the training data is used (each segment pays
+  for its parameters, the BIC of a segment uses the logarithm of its size);
+* with `validation = TRUE` a fraction `proportions` of the data is held out and the log-likelihood (no
+  penalty is needed) or the Gini index is computed there at each iteration;
+* with `test = TRUE` another fraction is held out, never used for selection, on which the criterion of the
+  best tree is reported in `fit@performance$performance`; `proportions = c(test, validation)` when
+  both are used.
+
+`burn_in` is the number of first iterations that cannot be selected, and `patience` stops the chain
+when the criterion has not improved for that many iterations.
+
+```{r validation, eval = FALSE}
+fit <- glmtree(
+  x = data[, features], y = data$y, test = TRUE, validation = TRUE,
+  proportions = c(0.2, 0.2), criterion = "gini", patience = 50
+)
+```
+
+## Comparison with a clustering of the features
+
+A popular alternative is to cluster the observations on their features (for instance on the first
+principal components) and fit one regression per cluster. This only helps when the clusters of the
+features are related to the heterogeneity of the response, which is not the case in the `"tree"`
+scenario: the response depends on the segment through `x1`, which a PCA of the features does not
+isolate.
+
+```{r famd, eval = requireNamespace("FactoMineR", quietly = TRUE)}
+data <- generateData(n = 2000, scenario = "tree")
+train <- sample(nrow(data), 1400)
+mixed <- FactoMineR::FAMD(data[train, features], graph = FALSE)
+cluster <- function(newdata) stats::predict(mixed, newdata)$coord[, "Dim 1"] < 0
+segment <- cluster(data[, features])
+pred <- numeric(nrow(data))
 for (j in c(TRUE, FALSE)) {
-  modele <- glm(y ~ x1 + x2 + x3, data = data[dim_famd == j, ], family = binomial(link = "logit"))
-  pred[dim_famd == j] <- predict(modele, test[dim_famd == j, ], type = "response")
+  model <- glm(y ~ x1 + x2 + x3, data = data[train, ][segment[train] == j, ], family = binomial)
+  pred[segment == j] <- predict(model, data[segment == j, ], type = "response")
 }
-
-normalizedGini(test$y, pred)
+normalizedGini(data$y[-train], pred[-train])
 ```
-
-### MOB
-
-```{r segmentation_mob2, warning=FALSE, message=FALSE}
-if (require(partykit, quietly = TRUE)) {
-  mob_data <- partykit::glmtree(formula = y ~ x1 + x2 + x3 | x1 + x2 + x3, data = data, family = binomial)
-  plot(mob_data)
-  normalizedGini(test$y, predict(mob_data, test))
-}
-```
-
-### `glmtree` approach
-
-```{r segmentation_glmtree2, warning=FALSE}
-tree <- glmtree::glmtree(x = data[, c("x1", "x2", "x3")], y = data$y)
-
-plot(unlist(tree@performance$criterionEvolution), type = "l")
-
-data$c_map <- factor(apply(predict(tree@best.tree$tree, data, type = "prob"), 1, function(p) names(which.max(p))))
-test$c_map <- factor(apply(predict(tree@best.tree$tree, test, type = "prob"), 1, function(p) names(which.max(p))))
-
-table(data$c, data$c_map)
-
-plot(data[, 1], data[, 2], pch = 2 + data[, 3], col = as.numeric(data$c_map), xlab = "First coordinate", ylab = "Second coordinate")
-
-plot(tree@best.tree$tree)
-
-pred <- matrix(0, nrow = 0.2 * 1000, ncol = 1)
-
-for (j in 1:nlevels(data$c_map)) {
-  pred[test$c_map == levels(data$c_map)[j]] <- predict(tree@best.tree$glms[[j]], test[test$c_map == levels(data$c_map)[j], ], type = "response")
-}
-
-normalizedGini(test$y, pred)
-```
-
