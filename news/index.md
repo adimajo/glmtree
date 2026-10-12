@@ -2,6 +2,8 @@
 
 ## glmtree 0.4.0
 
+CRAN release: 2026-10-11
+
 This release re-submits the package to CRAN, from which it was archived
 on 2025-10-03: the vignette called
 [`library(FactoMineR)`](http://factominer.free.fr) unconditionally while
