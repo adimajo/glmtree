@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/adimajo/glmtree/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/adimajo/glmtree/blob/v0.4.0/inst/CITATION)
 
 Ehrhardt A. (2026). glmtree: Logistic Regression Trees. R package
 version 0.4.0. https://github.com/adimajo/glmtree
