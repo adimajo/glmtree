@@ -13,7 +13,7 @@ check_features(x)
 A data frame with only numeric and factor columns.
 }
 \description{
-Accepts data frames, tibbles and matrices; characters and logicals become factors, integers
+Accepts data frames (including tibbles) and matrices; characters and logicals become factors, integers
 become numerics.
 }
 \keyword{internal}

@@ -10,8 +10,8 @@
 #'   columns; characters and logicals are converted to factors). No missing values are allowed.
 #' @param y The binary / boolean labels to predict. The larger value (or the second level of a factor) is
 #'   the positive class.
-#' @param K The number of segments to start with (maximum number of segments there'll be in the end).
-#' @param iterations The number of iterations to do in the SEM protocole (default: 200).
+#' @param K The number of segments to start with (maximum number of segments there will be in the end).
+#' @param iterations The number of iterations to do in the SEM algorithm (default: 200).
 #' @param test Boolean : True if a test set should be held out, on which the \code{criterion} of the best
 #'   tree is reported in \code{performance} (default: FALSE).
 #' @param validation Boolean : True if a validation set should be held out, on which the \code{criterion}
@@ -20,8 +20,8 @@
 #' @param proportions The proportions of observations held out: \code{c(test, validation)} when both are
 #'   requested, otherwise a single proportion for whichever is requested. Not used when both are FALSE.
 #'   Errors when invalid (e.g. a sum greater than one). Default: 0.3.
-#' @param criterion The criterion ('gini','aic','bic') used to choose the best tree among the generated
-#'   ones (default: 'bic'). AIC and BIC are summed over segments (the BIC penalty of a segment uses the
+#' @param criterion The criterion (`"gini"`, `"aic"`, `"bic"`) used to choose the best tree among the generated
+#'   ones (default: `"bic"`). AIC and BIC are summed over segments (the BIC penalty of a segment uses the
 #'   logarithm of its size) and are replaced by the log-likelihood when computed on held out data, where no
 #'   penalty is needed. The Gini index is best used with a validation set.
 #' @param ctree_controls The controls to use for \code{partykit::ctree}.
