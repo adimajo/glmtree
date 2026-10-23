@@ -102,7 +102,7 @@ Reproduce with `Rscript inst/benchmarks/real_data.R 20 100` and `Rscript inst/be
 ## Documentation
 
 * Help pages and vignette: `?glmtree`, `vignette("glmtree")`.
-* Online: <https://adimajo.github.io/glmtree>.
+* Online: <https://adimajo.github.io/glmtree/>.
 * Questions and bug reports: <https://github.com/adimajo/glmtree/issues>.
 
 ## References
