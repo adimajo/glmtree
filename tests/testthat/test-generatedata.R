@@ -34,7 +34,9 @@ test_that("generateData in tree scenario draws from the documented mechanism", {
 
 test_that("generateData in tree scenario - plot", {
   set.seed(1)
+  grDevices::pdf(NULL)
   expect_no_error(generateData(scenario = "tree", visualize = TRUE))
+  grDevices::dev.off()
 })
 
 test_that("generateData in no tree scenario", {
@@ -46,5 +48,7 @@ test_that("generateData in no tree scenario", {
   expect_equal(nrow(data), 30000)
   fit <- stats::glm(y ~ x1 + x2, data = data, family = stats::binomial())
   expect_equal(unname(stats::coef(fit)), c(3, 0.5, -1), tolerance = 0.12)
+  grDevices::pdf(NULL)
   expect_no_error(generateData(scenario = "no tree", visualize = TRUE))
+  grDevices::dev.off()
 })
