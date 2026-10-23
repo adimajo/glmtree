@@ -1,3 +1,9 @@
+# glmtree (development version)
+
+* The documentation declares `Language: en-US`, typos were fixed and the URLs use their
+  canonical form (CRAN incoming checks).
+* The plotting tests no longer leave an `Rplots.pdf` behind.
+
 # glmtree 0.4.0
 
 This release re-submits the package to CRAN, from which it was archived on 2025-10-03: the
