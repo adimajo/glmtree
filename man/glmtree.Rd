@@ -26,9 +26,9 @@ columns; characters and logicals are converted to factors). No missing values ar
 \item{y}{The binary / boolean labels to predict. The larger value (or the second level of a factor) is
 the positive class.}
 
-\item{K}{The number of segments to start with (maximum number of segments there'll be in the end).}
+\item{K}{The number of segments to start with (maximum number of segments there will be in the end).}
 
-\item{iterations}{The number of iterations to do in the SEM protocole (default: 200).}
+\item{iterations}{The number of iterations to do in the SEM algorithm (default: 200).}
 
 \item{test}{Boolean : True if a test set should be held out, on which the \code{criterion} of the best
 tree is reported in \code{performance} (default: FALSE).}
@@ -41,8 +41,8 @@ the training set).}
 requested, otherwise a single proportion for whichever is requested. Not used when both are FALSE.
 Errors when invalid (e.g. a sum greater than one). Default: 0.3.}
 
-\item{criterion}{The criterion ('gini','aic','bic') used to choose the best tree among the generated
-ones (default: 'bic'). AIC and BIC are summed over segments (the BIC penalty of a segment uses the
+\item{criterion}{The criterion (\code{"gini"}, \code{"aic"}, \code{"bic"}) used to choose the best tree among the generated
+ones (default: \code{"bic"}). AIC and BIC are summed over segments (the BIC penalty of a segment uses the
 logarithm of its size) and are replaced by the log-likelihood when computed on held out data, where no
 penalty is needed. The Gini index is best used with a validation set.}
 

@@ -1,4 +1,5 @@
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/glmtree)](https://CRAN.R-project.org/package=glmtree)
 [![R-CMD-check](https://github.com/adimajo/glmtree/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/adimajo/glmtree/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/adimajo/glmtree/branch/master/graph/badge.svg)](https://app.codecov.io/gh/adimajo/glmtree?branch=master)
 <!-- badges: end -->
@@ -12,13 +13,11 @@ segmentation is searched jointly with the regressions by a stochastic EM algorit
 [manuscript](https://github.com/adimajo/manuscrit_these) or the
 [web article](https://adimajo.github.io/logistic_trees.html)).
 
-> **Status.** The package was archived on CRAN on 2025-10-03 (a vignette needed a suggested package
-> that was missing on one check flavor) and a re-submission is in preparation. Meanwhile, install it
-> from GitHub.
-
 ## Installation
 
 ``` r
+install.packages("glmtree")                # from CRAN
+# development version
 # install.packages("pak")
 pak::pak("adimajo/glmtree")
 ```
@@ -102,7 +101,7 @@ Reproduce with `Rscript inst/benchmarks/real_data.R 20 100` and `Rscript inst/be
 ## Documentation
 
 * Help pages and vignette: `?glmtree`, `vignette("glmtree")`.
-* Online: <https://adimajo.github.io/glmtree>.
+* Online: <https://adimajo.github.io/glmtree/>.
 * Questions and bug reports: <https://github.com/adimajo/glmtree/issues>.
 
 ## References

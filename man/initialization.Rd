@@ -7,7 +7,7 @@
 initialization(K, n)
 }
 \arguments{
-\item{K}{The number of segments to start with (maximum number of segments there'll be in the end).}
+\item{K}{The number of segments to start with (maximum number of segments there will be in the end).}
 
 \item{n}{The number of observations to draw.}
 }

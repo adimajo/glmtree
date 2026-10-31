@@ -6,7 +6,7 @@
 
 #' Check and normalize the features
 #'
-#' Accepts data frames, tibbles and matrices; characters and logicals become factors, integers
+#' Accepts data frames (including tibbles) and matrices; characters and logicals become factors, integers
 #' become numerics.
 #' @param x The features.
 #' @return A data frame with only numeric and factor columns.
