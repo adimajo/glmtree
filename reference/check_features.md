@@ -1,7 +1,7 @@
 # Check and normalize the features
 
-Accepts data frames, tibbles and matrices; characters and logicals
-become factors, integers become numerics.
+Accepts data frames (including tibbles) and matrices; characters and
+logicals become factors, integers become numerics.
 
 ## Usage
 

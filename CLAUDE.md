@@ -51,6 +51,13 @@ Rscript -e 'roxygen2::roxygenise(".", load_code = roxygen2::load_source)'
 # install, test, check
 R CMD INSTALL --no-docs -l /tmp/glmtree-lib . && Rscript -e '.libPaths(c("/tmp/glmtree-lib", .libPaths())); testthat::test_local(".")'
 R CMD build . && R CMD check --as-cran glmtree_*.tar.gz
+# reproduce the CRAN incoming checks, including the spell check of DESCRIPTION
+# (needs aspell and aspell-en; the variable is set on the CRAN machines, not by --as-cran)
+_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true R CMD check --as-cran glmtree_*.tar.gz
+# spelling of Rd, README, NEWS and vignette; unknown words go to inst/WORDLIST
+Rscript -e 'spelling::spell_check_package(".")'
+# URLs (a redirect, e.g. a missing trailing slash, is reported by CRAN)
+Rscript -e 'urlchecker::url_check()'
 # style (CI fails on a diff)
 Rscript -e 'styler::style_pkg()'
 # benchmarks

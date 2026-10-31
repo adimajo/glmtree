@@ -9,14 +9,12 @@ Ehrhardt A. (see the
 [manuscript](https://github.com/adimajo/manuscrit_these) or the [web
 article](https://adimajo.github.io/logistic_trees.html)).
 
-> **Status.** The package was archived on CRAN on 2025-10-03 (a vignette
-> needed a suggested package that was missing on one check flavor) and a
-> re-submission is in preparation. Meanwhile, install it from GitHub.
-
 ## Installation
 
 ``` r
 
+install.packages("glmtree")                # from CRAN
+# development version
 # install.packages("pak")
 pak::pak("adimajo/glmtree")
 ```
@@ -130,7 +128,7 @@ Reproduce with `Rscript inst/benchmarks/real_data.R 20 100` and
 - Help pages and vignette:
   [`?glmtree`](https://adimajo.github.io/glmtree/reference/glmtree.md),
   [`vignette("glmtree")`](https://adimajo.github.io/glmtree/articles/glmtree.md).
-- Online: <https://adimajo.github.io/glmtree>.
+- Online: <https://adimajo.github.io/glmtree/>.
 - Questions and bug reports:
   <https://github.com/adimajo/glmtree/issues>.
 

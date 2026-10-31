@@ -1,5 +1,11 @@
 # Changelog
 
+## glmtree (development version)
+
+- The documentation declares `Language: en-US`, typos were fixed and the
+  URLs use their canonical form (CRAN incoming checks).
+- The plotting tests no longer leave an `Rplots.pdf` behind.
+
 ## glmtree 0.4.0
 
 CRAN release: 2026-10-11

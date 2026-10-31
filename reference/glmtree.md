@@ -45,12 +45,12 @@ glmtree(
 
 - K:
 
-  The number of segments to start with (maximum number of segments
-  there'll be in the end).
+  The number of segments to start with (maximum number of segments there
+  will be in the end).
 
 - iterations:
 
-  The number of iterations to do in the SEM protocole (default: 200).
+  The number of iterations to do in the SEM algorithm (default: 200).
 
 - test:
 
@@ -73,12 +73,12 @@ glmtree(
 
 - criterion:
 
-  The criterion ('gini','aic','bic') used to choose the best tree among
-  the generated ones (default: 'bic'). AIC and BIC are summed over
-  segments (the BIC penalty of a segment uses the logarithm of its size)
-  and are replaced by the log-likelihood when computed on held out data,
-  where no penalty is needed. The Gini index is best used with a
-  validation set.
+  The criterion (`"gini"`, `"aic"`, `"bic"`) used to choose the best
+  tree among the generated ones (default: `"bic"`). AIC and BIC are
+  summed over segments (the BIC penalty of a segment uses the logarithm
+  of its size) and are replaced by the log-likelihood when computed on
+  held out data, where no penalty is needed. The Gini index is best used
+  with a validation set.
 
 - ctree_controls:
 

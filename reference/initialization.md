@@ -12,8 +12,8 @@ initialization(K, n)
 
 - K:
 
-  The number of segments to start with (maximum number of segments
-  there'll be in the end).
+  The number of segments to start with (maximum number of segments there
+  will be in the end).
 
 - n:
 
